@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${cinzel.variable} ${poppins.variable} font-sans`}>{children}</body>
+      <body className={`${cinzel.variable} ${poppins.variable}`}>{children}</body>
     </html>
   )
 }

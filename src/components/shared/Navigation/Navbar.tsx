@@ -150,7 +150,7 @@ export function Navbar() {
                   {item.submenu.map((subItem) => (
                     <Link
                       key={subItem}
-                      href="#"
+                      href="/about"
                       className="block py-1 font-poppins text-sm text-award-silver hover:text-award-gold"
                     >
                       {subItem}
