@@ -1,14 +1,15 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import { AnimatedButton } from "@/components/ui/animated-button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent } from "@/components/ui/card"
 import { Trophy, Calendar, Users, Star, Award, Zap } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { Navbar } from "@/components/Navbar"
 import { useRef } from "react"
+import { Navbar } from "@/components/shared/Navigation/Navbar"
+import {Card, CardContent, CardHeader, CardTitle, CardDescription} from "@/components/ui/card"
+import Footer from "@/components/shared/Footer/Footer"
+import { Carousel } from "@/components/Carosel/Carosel"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -16,6 +17,11 @@ const fadeInUp = {
   transition: { duration: 0.5 },
 }
 
+const carouselImages = [
+  "/assets/about.webp",
+  "/assets/about1.webp",
+  "/assets/about2.webp",
+];
 const staggerContainer = {
   animate: {
     transition: {
@@ -42,10 +48,10 @@ export default function Home() {
         {/* Hero Section */}
         <motion.section ref={targetRef} style={{ opacity, scale }} className="relative h-screen overflow-hidden">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/The%20Most%20Popular%20WordPress%20Themes%20In%20The%20World-tJfOUAOnHEFiQxSXuxjFpeNCB62FuY.jpeg"
+            src="/assets/heroimage4.webp"
             alt="Victory Statue"
             fill
-            className="object-cover brightness-50"
+            className="object-cover w-full h-full brightness-50 "
           />
           <motion.div
             initial={{ opacity: 0 }}
@@ -65,7 +71,7 @@ export default function Home() {
                 Honoring the Brightest Minds in Tertiary Education
               </motion.p>
               <motion.div variants={fadeInUp}>
-                <AnimatedButton>Nominate Now</AnimatedButton>
+                <AnimatedButton size="lg">Nominate Now</AnimatedButton>
               </motion.div>
             </motion.div>
           </div>
@@ -82,21 +88,16 @@ export default function Home() {
               className="grid md:grid-cols-2 gap-12 items-center"
             >
               <motion.div variants={fadeInUp} className="space-y-6">
-                <h2 className="text-4xl font-bold text-award-gold">About AAN</h2>
+                <h2 className="text-4xl font-bold text-award-gold font-cinzel">About Aims Achievers Network</h2>
                 <p className="text-award-silver text-lg font-poppins">
                   The Aims Achievers Network (AAN) is dedicated to recognizing and celebrating outstanding achievements
                   in tertiary education. We believe in the power of acknowledging excellence to inspire future
                   generations of scholars and leaders.
                 </p>
-                <AnimatedButton>Learn More</AnimatedButton>
+                <AnimatedButton size="lg">Learn More</AnimatedButton>
               </motion.div>
               <motion.div variants={fadeInUp} className="relative h-96">
-                <Image
-                  src="/placeholder.svg?height=600&width=400"
-                  alt="Academic Achievement"
-                  fill
-                  className="object-cover rounded-lg shadow-2xl shadow-award-gold/20"
-                />
+                <Carousel images={carouselImages} />
               </motion.div>
             </motion.div>
           </div>
@@ -131,14 +132,22 @@ export default function Home() {
                 <motion.div
                   key={index}
                   variants={fadeInUp}
-                  whileHover={{ y: -5 }}
+                  whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(255, 215, 0, 0.3)" }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Card className="bg-award-blue/5 border-award-gold/20 hover:border-award-gold/40 transition-colors h-full">
-                    <CardContent className="p-6 space-y-4 flex flex-col items-center text-center">
-                      <category.icon className="w-12 h-12 text-award-gold" />
-                      <h3 className="font-bold text-award-gold text-xl font-poppins">{category.title}</h3>
-                      <p className="text-award-silver font-poppins">{category.description}</p>
+                  <Card>
+                    <CardHeader>
+                      <motion.div
+                        whileHover={{ rotate: 5, scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="mb-2"
+                      >
+                        <category.icon className="w-12 h-12 text-award-gold" />
+                      </motion.div>
+                      <CardTitle>{category.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription>{category.description}</CardDescription>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -179,14 +188,14 @@ export default function Home() {
                     "The AAN Lifetime Achievement Award is a testament to the impact of dedication and perseverance in academia.",
                 },
               ].map((testimonial, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="bg-black/50 p-8 rounded-lg border border-award-gold/20"
-                >
-                  <p className="text-award-silver italic mb-4 font-poppins">"{testimonial.quote}"</p>
-                  <p className="text-award-gold font-bold font-poppins">{testimonial.name}</p>
-                  <p className="text-award-silver font-poppins">{testimonial.title}</p>
+                <motion.div key={index} variants={fadeInUp}>
+                  <Card>
+                    <CardContent className="p-6">
+                      <p className="text-award-silver italic mb-4 font-poppins">"{testimonial.quote}"</p>
+                      <CardTitle className="text-lg mb-1">{testimonial.name}</CardTitle>
+                      <CardDescription>{testimonial.title}</CardDescription>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               ))}
             </motion.div>
@@ -206,7 +215,7 @@ export default function Home() {
               <p className="text-award-silver text-xl max-w-2xl mx-auto font-poppins">
                 Join us in celebrating the brightest minds and most impactful contributions in tertiary education.
               </p>
-              <AnimatedButton>Nominate Now</AnimatedButton>
+              <AnimatedButton size="lg">Nominate Now</AnimatedButton>
             </motion.div>
           </div>
         </section>
@@ -220,18 +229,16 @@ export default function Home() {
             className="container"
           >
             <div className="max-w-2xl mx-auto text-center space-y-8">
-              <h2 className="text-3xl font-bold text-award-gold font-poppins">Stay Informed</h2>
+              <h2 className="text-3xl font-bold text-award-gold font-cinzel">Stay Informed</h2>
               <p className="text-award-silver text-lg font-poppins">
                 Subscribe to our newsletter for updates on upcoming events, award announcements, and inspiring stories
                 from our winners.
               </p>
-              <motion.div className="flex max-w-md mx-auto" whileHover={{ scale: 1.02 }}>
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="bg-black/50 border-award-gold/20 text-white rounded-r-none"
-                />
-                <AnimatedButton className="rounded-l-none">Subscribe</AnimatedButton>
+              <motion.div className="flex max-w-md mx-auto justify-center items-center gap-2" whileHover={{ scale: 1.02 }}>
+                <Input type="email" placeholder="Enter your email" className="flex-grow rounded-r-none" />
+                <AnimatedButton size="lg" className="rounded-l-none">
+                  Subscribe
+                </AnimatedButton>
               </motion.div>
             </div>
           </motion.div>
@@ -239,62 +246,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-award-gold/20 bg-black/95">
-        <div className="container py-12">
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-          >
-            {[
-              {
-                title: "About AAN",
-                content: "Recognizing and celebrating excellence in tertiary education since 2010.",
-              },
-              {
-                title: "Quick Links",
-                links: ["Events", "Gallery", "Contact", "FAQs"],
-              },
-              {
-                title: "Contact",
-                content: "Email: info@aan.com\nPhone: (123) 456-7890\nAddress: 123 Academic Ave, Knowledge City",
-              },
-              {
-                title: "Follow Us",
-                links: ["Twitter", "LinkedIn", "Instagram", "Facebook"],
-              },
-            ].map((section, index) => (
-              <motion.div key={index} variants={fadeInUp} className="space-y-4">
-                <h4 className="font-bold text-award-gold font-poppins">{section.title}</h4>
-                {section.content ? (
-                  <p className="text-sm text-award-silver font-poppins">{section.content}</p>
-                ) : (
-                  <ul className="space-y-2 text-sm text-award-silver">
-                    {section.links?.map((link) => (
-                      <li key={link}>
-                        <Link href="#" className="hover:text-award-gold transition-colors">
-                          {link}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-          <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="mt-12 pt-8 border-t border-award-gold/20 text-center text-sm text-award-silver font-poppins"
-          >
-            <p>&copy; 2024 Aims Achievers Network. All rights reserved.</p>
-          </motion.div>
-        </div>
-      </footer>
+        <Footer/>
     </div>
   )
 }
