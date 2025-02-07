@@ -1,21 +1,27 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { Input } from "@/components/ui/input"
-import { Trophy, Calendar, Users, Star, Award, Zap } from "lucide-react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
-import { Navbar } from "@/components/shared/Navigation/Navbar"
-import {Card, CardContent, CardHeader, CardTitle, CardDescription} from "@/components/ui/card"
-import Footer from "@/components/shared/Footer/Footer"
-import { Carousel } from "@/components/Carosel/Carosel"
-
+import Image from "next/image";
+import { AnimatedButton } from "@/components/ui/animated-button";
+import { Input } from "@/components/ui/input";
+import { Trophy, Calendar, Users, Star, Award, Zap } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Navbar } from "@/components/shared/Navigation/Navbar";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import Footer from "@/components/shared/Footer/Footer";
+import { Carousel } from "@/components/Carosel/Carosel";
+import Link from "next/link";
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.5 },
-}
+};
 
 const carouselImages = [
   "/assets/about.webp",
@@ -28,17 +34,17 @@ const staggerContainer = {
       staggerChildren: 0.2,
     },
   },
-}
+};
 
 export default function Home() {
-  const targetRef = useRef(null)
+  const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end start"],
-  })
+  });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
@@ -46,12 +52,16 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <motion.section ref={targetRef} style={{ opacity, scale }} className="relative h-screen overflow-hidden">
+        <motion.section
+          ref={targetRef}
+          style={{ opacity, scale }}
+          className="relative h-screen overflow-hidden"
+        >
           <Image
             src="/assets/heroimage4.webp"
             alt="Victory Statue"
             fill
-            className="object-cover w-full h-full brightness-50 "
+            className="h-full w-full object-cover brightness-50"
           />
           <motion.div
             initial={{ opacity: 0 }}
@@ -59,15 +69,23 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"
           />
-          <div className="container relative h-full flex items-center">
-            <motion.div variants={staggerContainer} initial="initial" animate="animate" className="max-w-3xl space-y-8">
+          <div className="container relative flex h-full items-center">
+            <motion.div
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+              className="max-w-3xl space-y-8"
+            >
               <motion.h1
                 variants={fadeInUp}
-                className="font-cinzel text-6xl font-bold tracking-tighter sm:text-7xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-award-gold via-award-silver to-award-gold"
+                className="bg-gradient-to-r from-award-gold via-award-silver to-award-gold bg-clip-text font-cinzel text-6xl font-bold tracking-tighter text-transparent sm:text-7xl md:text-8xl"
               >
                 Elevating Academic Excellence
               </motion.h1>
-              <motion.p variants={fadeInUp} className="font-poppins text-xl text-award-silver md:text-2xl/relaxed">
+              <motion.p
+                variants={fadeInUp}
+                className="font-poppins text-xl text-award-silver md:text-2xl/relaxed"
+              >
                 Honoring the Brightest Minds in Tertiary Education
               </motion.p>
               <motion.div variants={fadeInUp}>
@@ -78,23 +96,28 @@ export default function Home() {
         </motion.section>
 
         {/* About Section */}
-        <section className="py-24 bg-award-blue/10">
+        <section className="bg-award-blue/10 py-24">
           <div className="container">
             <motion.div
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="grid md:grid-cols-2 gap-12 items-center"
+              className="grid items-center gap-12 md:grid-cols-2"
             >
               <motion.div variants={fadeInUp} className="space-y-6">
-                <h2 className="text-4xl font-bold text-award-gold font-cinzel">About Aims Achievers Network</h2>
-                <p className="text-award-silver text-lg font-poppins">
-                  The Aims Achievers Network (AAN) is dedicated to recognizing and celebrating outstanding achievements
-                  in tertiary education. We believe in the power of acknowledging excellence to inspire future
-                  generations of scholars and leaders.
+                <h2 className="font-cinzel text-4xl font-bold text-award-gold">
+                  About Aims Achievers Network
+                </h2>
+                <p className="font-poppins text-lg text-award-silver">
+                  The Aims Achievers Network (AAN) is dedicated to recognizing
+                  and celebrating outstanding achievements in tertiary
+                  education. We believe in the power of acknowledging excellence
+                  to inspire future generations of scholars and leaders.
                 </p>
-                <AnimatedButton size="lg">Learn More</AnimatedButton>
+                <Link href="/about"passHref className="relative top-5">
+                  <AnimatedButton size="lg">Learn More</AnimatedButton>
+                </Link>
               </motion.div>
               <motion.div variants={fadeInUp} className="relative h-96">
                 <Carousel images={carouselImages} />
@@ -104,13 +127,13 @@ export default function Home() {
         </section>
 
         {/* Awards Categories */}
-        <section className="py-24 bg-black">
+        <section className="bg-black py-24">
           <div className="container">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl font-bold text-center text-award-gold mb-12"
+              className="mb-12 text-center text-4xl font-bold text-award-gold"
             >
               Award Categories
             </motion.h2>
@@ -119,20 +142,47 @@ export default function Home() {
               whileInView="animate"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="grid md:grid-cols-3 gap-8"
+              className="grid gap-8 md:grid-cols-3"
             >
               {[
-                { icon: Star, title: "Academic Excellence", description: "Recognizing top academic performers" },
-                { icon: Zap, title: "Innovation", description: "Honoring groundbreaking research and ideas" },
-                { icon: Users, title: "Community Impact", description: "Celebrating contributions to society" },
-                { icon: Award, title: "Leadership", description: "Acknowledging exceptional student leaders" },
-                { icon: Calendar, title: "Lifetime Achievement", description: "Honoring career-long contributions" },
-                { icon: Trophy, title: "Rising Star", description: "Recognizing promising young talents" },
+                {
+                  icon: Star,
+                  title: "Academic Excellence",
+                  description: "Recognizing top academic performers",
+                },
+                {
+                  icon: Zap,
+                  title: "Innovation",
+                  description: "Honoring groundbreaking research and ideas",
+                },
+                {
+                  icon: Users,
+                  title: "Community Impact",
+                  description: "Celebrating contributions to society",
+                },
+                {
+                  icon: Award,
+                  title: "Leadership",
+                  description: "Acknowledging exceptional student leaders",
+                },
+                {
+                  icon: Calendar,
+                  title: "Lifetime Achievement",
+                  description: "Honoring career-long contributions",
+                },
+                {
+                  icon: Trophy,
+                  title: "Rising Star",
+                  description: "Recognizing promising young talents",
+                },
               ].map((category, index) => (
                 <motion.div
                   key={index}
                   variants={fadeInUp}
-                  whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(255, 215, 0, 0.3)" }}
+                  whileHover={{
+                    y: -5,
+                    boxShadow: "0 10px 30px -10px rgba(255, 215, 0, 0.3)",
+                  }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <Card>
@@ -142,7 +192,7 @@ export default function Home() {
                         transition={{ type: "spring", stiffness: 300 }}
                         className="mb-2"
                       >
-                        <category.icon className="w-12 h-12 text-award-gold" />
+                        <category.icon className="h-12 w-12 text-award-gold" />
                       </motion.div>
                       <CardTitle>{category.title}</CardTitle>
                     </CardHeader>
@@ -157,13 +207,13 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-24 bg-award-blue/10">
+        <section className="bg-award-blue/10 py-24">
           <div className="container">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl font-bold text-center text-award-gold mb-12"
+              className="mb-12 text-center text-4xl font-bold text-award-gold"
             >
               What Our Winners Say
             </motion.h2>
@@ -172,7 +222,7 @@ export default function Home() {
               whileInView="animate"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="grid md:grid-cols-2 gap-8"
+              className="grid gap-8 md:grid-cols-2"
             >
               {[
                 {
@@ -191,8 +241,12 @@ export default function Home() {
                 <motion.div key={index} variants={fadeInUp}>
                   <Card>
                     <CardContent className="p-6">
-                      <p className="text-award-silver italic mb-4 font-poppins">"{testimonial.quote}"</p>
-                      <CardTitle className="text-lg mb-1">{testimonial.name}</CardTitle>
+                      <p className="mb-4 font-poppins italic text-award-silver">
+                        "{testimonial.quote}"
+                      </p>
+                      <CardTitle className="mb-1 text-lg">
+                        {testimonial.name}
+                      </CardTitle>
                       <CardDescription>{testimonial.title}</CardDescription>
                     </CardContent>
                   </Card>
@@ -203,17 +257,20 @@ export default function Home() {
         </section>
 
         {/* Call to Action */}
-        <section className="py-24 bg-black">
+        <section className="bg-black py-24">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center space-y-8"
+              className="space-y-8 text-center"
             >
-              <h2 className="text-4xl font-bold text-award-gold font-poppins">Ready to Recognize Excellence?</h2>
-              <p className="text-award-silver text-xl max-w-2xl mx-auto font-poppins">
-                Join us in celebrating the brightest minds and most impactful contributions in tertiary education.
+              <h2 className="font-poppins text-4xl font-bold text-award-gold">
+                Ready to Recognize Excellence?
+              </h2>
+              <p className="mx-auto max-w-2xl font-poppins text-xl text-award-silver">
+                Join us in celebrating the brightest minds and most impactful
+                contributions in tertiary education.
               </p>
               <AnimatedButton size="lg">Nominate Now</AnimatedButton>
             </motion.div>
@@ -221,21 +278,30 @@ export default function Home() {
         </section>
 
         {/* Newsletter Section */}
-        <section className="py-24 bg-award-blue/10">
+        <section className="bg-award-blue/10 py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="container"
           >
-            <div className="max-w-2xl mx-auto text-center space-y-8">
-              <h2 className="text-3xl font-bold text-award-gold font-cinzel">Stay Informed</h2>
-              <p className="text-award-silver text-lg font-poppins">
-                Subscribe to our newsletter for updates on upcoming events, award announcements, and inspiring stories
-                from our winners.
+            <div className="mx-auto max-w-2xl space-y-8 text-center">
+              <h2 className="font-cinzel text-3xl font-bold text-award-gold">
+                Stay Informed
+              </h2>
+              <p className="font-poppins text-lg text-award-silver">
+                Subscribe to our newsletter for updates on upcoming events,
+                award announcements, and inspiring stories from our winners.
               </p>
-              <motion.div className="flex max-w-md mx-auto justify-center items-center gap-2" whileHover={{ scale: 1.02 }}>
-                <Input type="email" placeholder="Enter your email" className="flex-grow rounded-r-none" />
+              <motion.div
+                className="mx-auto flex max-w-md items-center justify-center gap-2"
+                whileHover={{ scale: 1.02 }}
+              >
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-grow rounded-r-none"
+                />
                 <AnimatedButton size="lg" className="rounded-l-none">
                   Subscribe
                 </AnimatedButton>
@@ -246,8 +312,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-        <Footer/>
+      <Footer />
     </div>
-  )
+  );
 }
-
