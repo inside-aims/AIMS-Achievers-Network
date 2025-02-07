@@ -76,7 +76,7 @@ export default function TeamSection() {
                 <Image
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}
-                  className="relative rounded-full object-cover border-4 border-gold"
+                  className="relative rounded-full object-cover border-4 border-award-gold"
                   width={160}
                   height={160}
                 />

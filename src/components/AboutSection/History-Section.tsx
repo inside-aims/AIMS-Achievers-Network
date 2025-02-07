@@ -15,12 +15,12 @@ export default function HistorySection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative aspect-square"
             >
-              <div className="absolute inset-0 bg-deepBlue/10 rounded-lg"></div>
+              <div className="absolute inset-0 bg-award-deepBlue/10 rounded-lg"></div>
               <Image
-                src="/placeholder.svg?height=400&width=400"
+                src="/assets/about.webp"
                 alt="History illustration"
                 className="relative rounded-lg object-cover transform transition-transform duration-500 hover:scale-105"
-                width={400}
+                width={700}
                 height={400}
               />
             </motion.div>

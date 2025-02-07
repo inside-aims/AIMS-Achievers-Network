@@ -15,6 +15,8 @@ module.exports = {
 		  award: {
 			gold: "#FFD700",
 			blue: "#003366",
+			deepBlue: "#003366",
+			customBlack: "#000000",
 			silver: "#C0C0C0",
 		  },
 		  border: "hsl(var(--border))",
