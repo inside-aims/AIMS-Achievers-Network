@@ -11,23 +11,39 @@ import { Input } from "@/components/ui/input"
 const menuItems = [
   {
     title: "About",
-    submenu: ["Our Mission", "History", "Team"],
+    submenu: [
+      { name: "Our Mission", link: "/about" },
+      { name: "History", link: "/about/history" },
+      { name: "Team", link: "/about/team" },
+    ],
   },
   {
     title: "Awards",
-    submenu: ["Categories", "Past Winners", "Nomination Process"],
+    submenu: [
+      { name: "Categories", link: "/awards/categories" },
+      { name: "Past Winners", link: "/awards/past-winners" },
+      { name: "Nomination Process", link: "/awards/nomination-process" },
+    ],
   },
   {
     title: "Events",
-    submenu: ["Upcoming", "Past Events", "Gallery"],
+    submenu: [
+      { name: "Upcoming", link: "/events/upcoming" },
+      { name: "Past Events", link: "/events/past" },
+      { name: "Gallery", link: "/events/gallery" },
+    ],
   },
   {
     title: "Resources",
-    submenu: ["FAQs", "Guidelines", "Contact"],
+    submenu: [
+      { name: "FAQs", link: "/resources/faqs" },
+      { name: "Guidelines", link: "/resources/guidelines" },
+      { name: "Contact", link: "/resources/contact" },
+    ],
   },
 ]
 
-const NavItem = ({ title, submenu }: { title: string; submenu: string[] }) => {
+const NavItem = ({ title, submenu }: { title: string; submenu: { name: string; link: string }[] }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -48,11 +64,11 @@ const NavItem = ({ title, submenu }: { title: string; submenu: string[] }) => {
             <div className="py-1">
               {submenu.map((item) => (
                 <Link
-                  key={item}
-                  href="#"
+                  key={item.name}
+                  href={item.link}
                   className="block px-4 py-2 text-sm font-poppins text-award-silver hover:bg-award-blue/20 hover:text-award-gold"
                 >
-                  {item}
+                  {item.name}
                 </Link>
               ))}
             </div>
@@ -149,11 +165,11 @@ export function Navbar() {
                   <h3 className="font-cinzel text-lg font-bold text-award-gold mb-2">{item.title}</h3>
                   {item.submenu.map((subItem) => (
                     <Link
-                      key={subItem}
-                      href="/about"
+                      key={subItem.name}
+                      href={subItem.link}
                       className="block py-1 font-poppins text-sm text-award-silver hover:text-award-gold"
                     >
-                      {subItem}
+                      {subItem.name}
                     </Link>
                   ))}
                 </div>
@@ -179,4 +195,6 @@ export function Navbar() {
     </motion.header>
   )
 }
+
+
 
