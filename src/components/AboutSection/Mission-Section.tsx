@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import AnimatedSection from "./Animated-Section"
 export default function MissionSection() {
   return (
-    <section className="w-full py-12 bg-white">
+    <section id="mission" className="w-full py-12 bg-white">
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <AnimatedSection>

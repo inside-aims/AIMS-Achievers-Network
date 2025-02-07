@@ -6,9 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Trophy, Calendar, Users, Star, Award, Zap } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
-import { Navbar } from "@/components/shared/Navigation/Navbar"
 import {Card, CardContent, CardHeader, CardTitle, CardDescription} from "@/components/ui/card"
-import Footer from "@/components/shared/Footer/Footer"
 import { Carousel } from "@/components/Carosel/Carosel"
 
 const fadeInUp = {
@@ -41,8 +39,7 @@ export default function Home() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
 
   return (
-    <div className="flex min-h-screen flex-col bg-black text-white">
-      <Navbar />
+
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -191,7 +188,7 @@ export default function Home() {
                 <motion.div key={index} variants={fadeInUp}>
                   <Card>
                     <CardContent className="p-6">
-                      <p className="text-award-silver italic mb-4 font-poppins">"{testimonial.quote}"</p>
+                      <p className="text-award-silver italic mb-4 font-poppins">&quot;{testimonial.quote}&quot;</p>
                       <CardTitle className="text-lg mb-1">{testimonial.name}</CardTitle>
                       <CardDescription>{testimonial.title}</CardDescription>
                     </CardContent>
@@ -245,9 +242,6 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
-        <Footer/>
-    </div>
   )
 }
 
