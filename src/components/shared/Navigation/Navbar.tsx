@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 const menuItems = [
   {
     title: "About",
+    link: "/about",
     submenu: [
       { name: "Our Mission", link: "/about#our-mission" },
       { name: "History", link: "/about#our-history" },
@@ -26,12 +27,12 @@ const menuItems = [
     ],
   },
   {
-    title: "Events",
-    link: "/events",
+    title: "Contact",
+    link: "/contact",
     submenu: [
-      { name: "Upcoming", link: "/events/upcoming" },
-      { name: "Past Events", link: "/events/past" },
-      { name: "Gallery", link: "/events/gallery" },
+      { name: "Contact Us", link: "/contact#contact-form" },
+      { name: "Sponsorship", link: "/contact/sponsorship" },
+      { name: "Partnerships", link: "/contact/partnerships" },
     ],
   },
   {
