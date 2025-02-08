@@ -78,7 +78,7 @@ export default function Home() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="bg-gradient-to-r from-award-gold via-award-silver to-award-gold bg-clip-text font-cinzel text-6xl font-bold tracking-tighter text-transparent sm:text-7xl md:text-8xl"
+                className="bg-gradient-to-r from-award-gold via-award-silver to-award-gold bg-clip-text font-cinzel text-6xl tracking-tighter text-transparent sm:text-7xl md:text-8xl"
               >
                 Elevating Academic Excellence
               </motion.h1>
@@ -115,7 +115,7 @@ export default function Home() {
                   education. We believe in the power of acknowledging excellence
                   to inspire future generations of scholars and leaders.
                 </p>
-                <Link href="/about"passHref className="relative top-5">
+                <Link href="/about" passHref className="relative top-5">
                   <AnimatedButton size="lg">Learn More</AnimatedButton>
                 </Link>
               </motion.div>

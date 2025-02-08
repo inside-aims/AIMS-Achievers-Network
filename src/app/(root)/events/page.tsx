@@ -32,7 +32,7 @@ export default function EventsPage() {
           {/* Hero Section */}
           <section className="mb-16">
             <motion.h1
-              className="mb-4 font-cinzel text-3xl font-bold text-award-gold lg:text-5xl"
+              className="mb-4 font-cinzel text-3xl text-award-gold lg:text-5xl"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}

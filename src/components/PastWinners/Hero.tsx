@@ -21,7 +21,7 @@ const HeroComponent = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-award-gold font-cinzel mb-4"
+          className="text-4xl sm:text-5xl md:text-6xl text-award-gold font-cinzel mb-4"
         >
           Our Award Winners Over the Years
         </motion.h1>
