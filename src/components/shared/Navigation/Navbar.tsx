@@ -27,6 +27,7 @@ const menuItems = [
   },
   {
     title: "Events",
+    link: "/events",
     submenu: [
       { name: "Upcoming", link: "/events/upcoming" },
       { name: "Past Events", link: "/events/past" },
