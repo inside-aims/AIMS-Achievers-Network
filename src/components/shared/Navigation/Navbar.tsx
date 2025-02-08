@@ -22,7 +22,7 @@ const menuItems = [
     title: "Awards",
     submenu: [
       { name: "Events", link: "/events" },
-      { name: "Past Winners", link: "/awards/past-winners" },
+      { name: "Past Winners", link: "/past-winners" },
       { name: "Nomination Process", link: "/awards/nomination-process" },
     ],
   },
