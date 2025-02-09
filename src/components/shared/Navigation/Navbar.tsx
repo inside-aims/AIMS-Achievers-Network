@@ -23,7 +23,7 @@ const menuItems = [
     submenu: [
       { name: "Events", link: "/events" },
       { name: "Past Winners", link: "/past-winners" },
-      { name: "Nomination Process", link: "/awards/nomination-process" },
+      { name: "Nomination Process", link: "/nomination-process" },
     ],
   },
   {
@@ -108,7 +108,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <Logo />
-              <span className="font-cinzel text-2xl font-bold text-award-gold">AimsAchieversNetwok</span>
+              <span className="font-cinzel text-2xl text-award-gold">AimsAchieversNetwok</span>
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">
