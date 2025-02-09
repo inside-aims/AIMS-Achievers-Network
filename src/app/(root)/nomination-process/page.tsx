@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/NominationProcess/TextArea"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { AnimatedButton } from "@/components/ui/animated-button"
+import Footer from "@/components/shared/Footer/Footer"
 
 const steps = [
   { id: 1, title: "Nominee Information" },
@@ -235,6 +236,9 @@ const NominationProgressPage = () => {
               )}
             </div>
           </form>
+        </div>
+        <div className="relative top-32">
+        <Footer/>
         </div>
       </main>
     </div>
