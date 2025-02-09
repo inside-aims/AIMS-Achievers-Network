@@ -23,6 +23,7 @@ const menuItems = [
     submenu: [
       { name: "Events", link: "/events" },
       { name: "Past Winners", link: "/past-winners" },
+      { name: "Gallery", link: "/gallery" },
       { name: "Nomination Process", link: "/nomination-process" },
     ],
   },
