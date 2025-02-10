@@ -24,16 +24,7 @@ const menuItems = [
       { name: "Events", link: "/events" },
       { name: "Past Winners", link: "/past-winners" },
       { name: "Gallery", link: "/gallery" },
-      { name: "Nomination Process", link: "/nomination-process" },
-    ],
-  },
-  {
-    title: "Contact",
-    link: "/contact",
-    submenu: [
-      { name: "Contact Us", link: "/contact#contact-form" },
-      { name: "Sponsorship", link: "/contact/sponsorship" },
-      { name: "Partnerships", link: "/contact/partnerships" },
+      { name: "Nomination Process", link: "/nomination-process-alt" },
     ],
   },
   {
@@ -41,7 +32,16 @@ const menuItems = [
     submenu: [
       { name: "FAQs", link: "/resources/faqs" },
       { name: "Guidelines", link: "/resources/guidelines" },
-      { name: "Contact", link: "/resources/contact" },
+      { name: "Contact", link: "/contacts" },
+    ],
+  },
+  {
+    title: "Contact",
+    link: "/contact#contact",
+    submenu: [
+      { name: "Contact Us", link: "/contact#contact-us" },
+      { name: "Sponsorship", link: "/contact#sponsorship" },
+      { name: "Partnerships", link: "/contact#partnerships" },
     ],
   },
 ]
