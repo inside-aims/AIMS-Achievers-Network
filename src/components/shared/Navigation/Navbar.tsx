@@ -30,8 +30,8 @@ const menuItems = [
   {
     title: "Resources",
     submenu: [
-      { name: "FAQs", link: "/resources/faqs" },
-      { name: "Guidelines", link: "/resources/guidelines" },
+      { name: "FAQs", link: "/resources#faqs" },
+      { name: "Guidelines", link: "/resources#guidelines" },
     ],
   },
   {
