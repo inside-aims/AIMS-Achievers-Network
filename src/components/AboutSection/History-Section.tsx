@@ -32,7 +32,7 @@ export default function HistorySection() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="space-y-4"
             >
-              <h2 className="text-3xl font-bold tracking-tighter text-deepBlue font-cinzel">Our History</h2>
+              <h2 className="text-3xl tracking-tighter text-deepBlue font-cinzel">Our History</h2>
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}

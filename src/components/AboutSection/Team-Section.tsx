@@ -48,7 +48,7 @@ export default function TeamSection() {
       <div className="container px-4 md:px-6">
         <AnimatedSection>
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold tracking-tighter text-deepBlue mb-4 font-cinzel">Our Team</h2>
+            <h2 className="text-3xl tracking-tighter text-deepBlue mb-4 font-cinzel">Our Team</h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto font-poppins">
               Meet the dedicated professionals who make our success possible through their expertise and commitment to
               excellence.

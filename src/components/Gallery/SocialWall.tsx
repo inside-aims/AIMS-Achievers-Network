@@ -37,7 +37,7 @@ export default function SocialWall() {
         ))}
       </div>
       <form onSubmit={handleSubmit} className="mt-8">
-        <h3 className="text-xl font-bold mb-4 font-cinzel">Submit Your Event Photos</h3>
+        <h3 className="text-xl mb-4 font-cinzel">Submit Your Event Photos</h3>
         <div className="flex gap-4">
           <input type="file" accept="image/*" className="flex-grow p-2 border rounded font-poppins" />
           <Button type="submit" className="font-poppins">

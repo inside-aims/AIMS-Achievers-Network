@@ -13,7 +13,6 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import Footer from "@/components/shared/Footer/Footer";
 import { Carousel } from "@/components/Carosel/Carosel";
 import Link from "next/link";
 const fadeInUp = {
@@ -87,7 +86,7 @@ export default function Home() {
                 Honoring the Brightest Minds in Tertiary Education
               </motion.p>
               <motion.div variants={fadeInUp}>
-                <AnimatedButton size="lg">Nominate Now</AnimatedButton>
+                {/* <AnimatedButton size="lg">Nominate Now</AnimatedButton> */}
               </motion.div>
             </motion.div>
           </div>
@@ -104,7 +103,7 @@ export default function Home() {
               className="grid items-center gap-12 md:grid-cols-2"
             >
               <motion.div variants={fadeInUp} className="space-y-6">
-                <h2 className="font-cinzel text-4xl font-bold text-award-gold">
+                <h2 className="font-cinzel text-4xl text-award-gold">
                   About Aims Achievers Network
                 </h2>
                 <p className="font-poppins text-lg text-award-silver">
@@ -125,13 +124,13 @@ export default function Home() {
         </section>
 
         {/* Awards Categories */}
-        <section className="bg-black py-24">
+        <section className="bg-black py-24" id="awards-category">
           <div className="container">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-12 text-center text-4xl font-bold text-award-gold"
+              className="mb-12 text-center text-4xl font-cinzel text-award-gold"
             >
               Award Categories
             </motion.h2>
@@ -211,7 +210,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-12 text-center text-4xl font-bold text-award-gold"
+              className="mb-12 text-center text-4xl font-cinzel text-award-gold"
             >
               What Our Winners Say
             </motion.h2>
@@ -260,7 +259,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="space-y-8 text-center"
             >
-              <h2 className="font-poppins text-4xl font-bold text-award-gold">
+              <h2 className="text-4xl font-cinzel text-award-gold">
                 Ready to Recognize Excellence?
               </h2>
               <p className="mx-auto max-w-2xl font-poppins text-xl text-award-silver">
@@ -281,7 +280,7 @@ export default function Home() {
             className="container"
           >
             <div className="mx-auto max-w-2xl space-y-8 text-center">
-              <h2 className="font-cinzel text-3xl font-bold text-award-gold">
+              <h2 className="font-cinzel text-3xl text-award-gold">
                 Stay Informed
               </h2>
               <p className="font-poppins text-lg text-award-silver">

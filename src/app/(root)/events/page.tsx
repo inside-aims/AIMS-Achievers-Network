@@ -65,8 +65,8 @@ export default function EventsPage() {
           </section>
 
           {/* Upcoming Events */}
-          <section className="mb-16">
-            <h2 className="mb-8 font-cinzel text-3xl font-bold text-award-gold">
+          <section className="mb-16" id="upcoming-events">
+            <h2 className="mb-8 font-cinzel text-3xl text-award-gold">
               Upcoming Events
             </h2>
             <motion.div
@@ -104,7 +104,7 @@ export default function EventsPage() {
 
           {/* Current Events */}
           <section className="mb-16">
-            <h2 className="mb-8 font-cinzel text-3xl font-bold text-award-gold">
+            <h2 className="mb-8 font-cinzel text-3xl text-award-gold">
               Current Events
             </h2>
             <motion.div
@@ -134,7 +134,7 @@ export default function EventsPage() {
 
           {/* Past Events */}
           <section className="mb-16">
-            <h2 className="mb-8 font-cinzel text-3xl font-bold text-award-gold">
+            <h2 className="mb-8 font-cinzel text-3xl text-award-gold">
               Past Events
             </h2>
             <motion.div
@@ -172,7 +172,7 @@ export default function EventsPage() {
 
           {/* News and Announcements */}
           <section>
-            <h2 className="mb-8 font-cinzel text-3xl font-bold text-award-gold">
+            <h2 className="mb-8 font-cinzel text-3xl text-award-gold">
               News and Announcements
             </h2>
             <motion.div

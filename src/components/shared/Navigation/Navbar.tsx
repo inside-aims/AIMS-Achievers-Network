@@ -126,9 +126,9 @@ export function Navbar() {
                 <Search className="h-6 w-6" />
               </button>
             </motion.div>
-            <AnimatedButton variant="default" size="lg">
+            {/* <AnimatedButton variant="default" size="lg">
               Nominate Now
-            </AnimatedButton>
+            </AnimatedButton> */}
           </div>
           <div className="md:hidden flex items-center">
             <button
@@ -188,9 +188,9 @@ export function Navbar() {
                     <Search className="h-6 w-6" />
                   </button>
                 </motion.div>
-                <AnimatedButton variant="default" size="lg">
+                {/* <AnimatedButton variant="default" size="lg">
                   Nominate Now
-                </AnimatedButton>
+                </AnimatedButton> */}
               </div>
             </div>
           </motion.div>

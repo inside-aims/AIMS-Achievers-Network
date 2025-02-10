@@ -1,6 +1,7 @@
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const SidebarComponent = () => {
   return (
@@ -8,11 +9,13 @@ const SidebarComponent = () => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-award-blue/5 p-6 rounded-lg shadow-md"
+      className="rounded-lg bg-award-blue/5 p-6 shadow-md"
     >
-      <h2 className="text-2xl font-bold text-award-gold mb-4 font-cinzel">Featured Winners</h2>
+      <h2 className="mb-4 font-cinzel text-2xl text-award-gold">
+        Featured Winners
+      </h2>
       <div className="space-y-4">
-        {[1, 2, 3].map((i) => (
+        {[1, 2, 3].map(i => (
           <div key={i} className="flex items-center space-x-4">
             <Image
               src={`/placeholder.svg?height=80&width=80`}
@@ -22,35 +25,49 @@ const SidebarComponent = () => {
               className="rounded-full"
             />
             <div>
-              <h3 className="text-lg font-semibold text-award-silver font-poppins">John Doe {i}</h3>
-              <p className="text-sm text-white font-poppins">Innovation Award 202{i + 2}</p>
+              <h3 className="font-poppins text-lg font-semibold text-award-silver">
+                John Doe {i}
+              </h3>
+              <p className="font-poppins text-sm text-white">
+                Innovation Award 202{i + 2}
+              </p>
             </div>
           </div>
         ))}
       </div>
       <div className="mt-8">
-        <h3 className="text-xl font-bold text-award-gold mb-4 font-cinzel">Quick Links</h3>
+        <h3 className="mb-4 font-cinzel text-xl text-award-gold">
+          Quick Links
+        </h3>
         <ul className="space-y-2">
           <li>
-            <Button variant="link" className="text-award-silver hover:text-award-gold">
-              Nomination Process
+            <Button
+              variant="link"
+              className="text-award-silver hover:text-award-gold"
+            >
+              <Link href="/nomination-process-alt">Nomination Process</Link>
             </Button>
           </li>
           <li>
-            <Button variant="link" className="text-award-silver hover:text-award-gold">
-              Award Categories
-            </Button>
+            <Button
+              variant="link"
+              className="text-award-silver hover:text-award-gold"
+            >
+              <Link href="/#awards-category">Awards Category</Link>
+              </Button>
           </li>
           <li>
-            <Button variant="link" className="text-award-silver hover:text-award-gold">
-              Upcoming Events
-            </Button>
+            <Button
+              variant="link"
+              className="text-award-silver hover:text-award-gold"
+            >
+              <Link href="/events#upcoming-events">Upcoming Events</Link>
+              </Button>
           </li>
         </ul>
       </div>
     </motion.aside>
-  )
-}
+  );
+};
 
-export default SidebarComponent
-
+export default SidebarComponent;
