@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { CalendarIcon } from "lucide-react"
-// import { Calendar } from "../ui/calender"
+import { Calendar } from "../ui/calender"
 import type { SelectSingleEventHandler } from "react-day-picker"
 
 const EventCalendar = () => {
@@ -19,12 +19,12 @@ const EventCalendar = () => {
         Event Calendar
       </h2>
       <div className="flex justify-center">
-        {/* <Calendar
+        <Calendar
           mode="single"
           selected={date}
           onSelect={handleSelect}
           className="rounded-md border border-award-gold bg-black text-award-silver"
-        /> */}
+        />
       </div>
     </div>
   )
