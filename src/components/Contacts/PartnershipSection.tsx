@@ -10,7 +10,7 @@ export default function PartnershipSection() {
       transition={{ duration: 0.5, delay: 0.4 }}
       className="bg-award-blue/10 p-8 rounded-lg shadow-lg"
     >
-      <h2 className="text-3xl font-bold text-award-gold mb-6 font-cinzel">Partnership Opportunities</h2>
+      <h2 className="text-3xl text-award-gold mb-6 font-cinzel">Partnership Opportunities</h2>
       <p className="text-award-silver mb-6 font-poppins">
         Collaborate with us to create meaningful impact in the academic community. Our partnerships are designed to
         foster innovation, support research, and enhance the educational landscape.

@@ -10,7 +10,7 @@ export default function SponsorshipSection() {
       transition={{ duration: 0.5, delay: 0.2 }}
       className="bg-award-blue/10 p-8 rounded-lg shadow-lg"
     >
-      <h2 className="text-3xl font-bold text-award-gold mb-6 font-cinzel">Sponsorship Opportunities</h2>
+      <h2 className="text-3xl text-award-gold mb-6 font-cinzel">Sponsorship Opportunities</h2>
       <p className="text-award-silver mb-6 font-poppins">
         Join us in celebrating excellence in academia. By becoming a sponsor, you'll gain visibility among the brightest
         minds in tertiary education and contribute to the recognition of outstanding achievements.

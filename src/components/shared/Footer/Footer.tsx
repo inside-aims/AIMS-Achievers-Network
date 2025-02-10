@@ -3,6 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { Trophy, Calendar, Users, Star, Award, Zap, Twitter, Linkedin, Instagram, Facebook } from "lucide-react"
 
 const staggerContainer = {
     animate: {
@@ -52,15 +53,50 @@ const Footer = () => {
                 {section.content ? (
                   <p className="text-sm text-award-silver font-poppins">{section.content}</p>
                 ) : (
-                  <ul className="space-y-2 text-sm text-award-silver">
-                    {section.links?.map((link) => (
-                      <li key={link}>
-                        <Link href="#" className="hover:text-award-gold transition-colors">
-                          {link}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <div>
+                    {section.title === "Follow Us" ? (
+                      <div className="flex space-x-4 mt-2">
+                        <a
+                          href="#"
+                          aria-label="Twitter"
+                          className="text-award-silver hover:text-award-gold transition-colors"
+                        >
+                          <Twitter className="w-6 h-6" />
+                        </a>
+                        <a
+                          href="#"
+                          aria-label="LinkedIn"
+                          className="text-award-silver hover:text-award-gold transition-colors"
+                        >
+                          <Linkedin className="w-6 h-6" />
+                        </a>
+                        <a
+                          href="#"
+                          aria-label="Instagram"
+                          className="text-award-silver hover:text-award-gold transition-colors"
+                        >
+                          <Instagram className="w-6 h-6" />
+                        </a>
+                        <a
+                          href="#"
+                          aria-label="Facebook"
+                          className="text-award-silver hover:text-award-gold transition-colors"
+                        >
+                          <Facebook className="w-6 h-6" />
+                        </a>
+                      </div>
+                    ) : (
+                      <ul className="space-y-2 text-sm text-award-silver">
+                        {section.links?.map((link) => (
+                          <li key={link}>
+                            <Link href="#" className="hover:text-award-gold transition-colors">
+                              {link}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 )}
               </motion.div>
             ))}

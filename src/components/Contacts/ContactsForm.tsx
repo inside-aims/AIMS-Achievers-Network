@@ -32,7 +32,7 @@ export default function ContactForm() {
       transition={{ duration: 0.5 }}
       className="bg-award-blue/10 p-8 rounded-lg shadow-lg"
     >
-      <h2 className="text-3xl font-bold text-award-gold mb-6 font-cinzel">Get in Touch</h2>
+      <h2 className="text-3xl text-award-gold mb-6 font-cinzel">Get in Touch</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <Label htmlFor="name" className="text-award-silver">
