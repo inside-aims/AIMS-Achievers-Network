@@ -1,13 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Navbar } from "@/components/shared/Navigation/Navbar";
 import EventCard from "@/components/Events/EventCard";
 import NewsCard from "@/components/Events/NewsCrad";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CalendarIcon, SearchIcon } from "lucide-react";
-import Footer from "@/components/shared/Footer/Footer";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -27,7 +25,6 @@ export default function EventsPage() {
   return (
     <>
       <div className="mt-20 min-h-screen bg-black text-white">
-        <Navbar />
         <main className="container mx-auto px-4 py-8">
           {/* Hero Section */}
           <section className="mb-16">
@@ -210,12 +207,8 @@ export default function EventsPage() {
               />
             </motion.div>
           </section>
-          <section className="relative top-20">
-            <Footer />
-          </section>
         </main>
       </div>
-      <Navbar />
     </>
   );
 }

@@ -1,17 +1,4 @@
-<<<<<<<< HEAD:src/app/page.tsx
 "use client";
-========
-"use client"
-
-import Image from "next/image"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { Input } from "@/components/ui/input"
-import { Trophy, Calendar, Users, Star, Award, Zap } from "lucide-react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
-import {Card, CardContent, CardHeader, CardTitle, CardDescription} from "@/components/ui/card"
-import { Carousel } from "@/components/Carosel/Carosel"
->>>>>>>> 455023a8f622e76ace893a039cbcd45c262379fc:src/app/(root)/page.tsx
 
 import Image from "next/image";
 import { AnimatedButton } from "@/components/ui/animated-button";
@@ -19,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Trophy, Calendar, Users, Star, Award, Zap } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Navbar } from "@/components/shared/Navigation/Navbar";
 import {
   Card,
   CardContent,
@@ -253,17 +239,9 @@ export default function Home() {
                 <motion.div key={index} variants={fadeInUp}>
                   <Card>
                     <CardContent className="p-6">
-<<<<<<<< HEAD:src/app/page.tsx
-                      <p className="mb-4 font-poppins italic text-award-silver">
-                        "{testimonial.quote}"
-                      </p>
-                      <CardTitle className="mb-1 text-lg">
-                        {testimonial.name}
-                      </CardTitle>
-========
+
                       <p className="text-award-silver italic mb-4 font-poppins">&quot;{testimonial.quote}&quot;</p>
                       <CardTitle className="text-lg mb-1">{testimonial.name}</CardTitle>
->>>>>>>> 455023a8f622e76ace893a039cbcd45c262379fc:src/app/(root)/page.tsx
                       <CardDescription>{testimonial.title}</CardDescription>
                     </CardContent>
                   </Card>
@@ -328,12 +306,6 @@ export default function Home() {
         </section>
       </main>
 
-<<<<<<<< HEAD:src/app/page.tsx
-      {/* Footer */}
-      <Footer />
-    </div>
-  );
-========
+
   )
->>>>>>>> 455023a8f622e76ace893a039cbcd45c262379fc:src/app/(root)/page.tsx
 }

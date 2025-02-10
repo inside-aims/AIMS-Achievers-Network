@@ -7,8 +7,7 @@ import FilterSortComponent from "@/components/PastWinners/FilterSort"
 import WinnersGridComponent from "@/components/PastWinners/WinnersGrid"
 import PaginationComponent from "@/components/PastWinners/Pagination"
 import SidebarComponent from "@/components/PastWinners/SideBar"
-import { Navbar } from "@/components/shared/Navigation/Navbar"
-import Footer from "@/components/shared/Footer/Footer"
+
 
 interface Winner {
   id: string
@@ -75,7 +74,6 @@ const PastWinnersPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Navbar />
       <HeroComponent />
       <motion.div
         initial={{ opacity: 0 }}
@@ -95,7 +93,6 @@ const PastWinnersPage = () => {
         </div>
       </motion.div>
       <div>
-        <Footer/>
       </div>
     </div>
   )

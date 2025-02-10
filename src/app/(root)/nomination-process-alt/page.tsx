@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion"
 
 import NomineeConfirmation from "@/components/Nomination-Process-Alt/NomineeComfirmation"
 import VotingPhase from "@/components/Nomination-Process-Alt/VotingPhase"
-import { Navbar } from "@/components/shared/Navigation/Navbar"
 import NominationLanding from "@/components/Nomination-Process-Alt/NominationLanding"
 import SelectCategory from "@/components/Nomination-Process-Alt/SelectCategory"
 import NomineeDetails from "@/components/Nomination-Process-Alt/NomineeDetails"
@@ -105,7 +104,6 @@ export default function NominationProcessPage() {
 
   return (
     <div className="min-h-screen bg-black text-white relative top-20">
-      <Navbar />
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl text-center text-award-gold mb-8 font-cinzel">Nomination Process</h1>
         <ProgressBar currentStep={currentStep} totalSteps={steps.length} />
