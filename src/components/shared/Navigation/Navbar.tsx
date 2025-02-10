@@ -13,9 +13,11 @@ const menuItems = [
     title: "About",
     link: "/about",
     submenu: [
-      { name: "Our Mission", link: "/about#our-mission" },
-      { name: "History", link: "/about#our-history" },
-      { name: "Team", link: "/about#team-section" },
+
+      { name: "Our Mission", link: "/about" },
+      { name: "History", link: "/about#history" },
+      { name: "Team", link: "/about#team" },
+
     ],
   },
   {
