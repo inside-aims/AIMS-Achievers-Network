@@ -202,6 +202,9 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
+        <section>
+          <Calendar/>
+        </section>
 
         {/* Testimonials */}
         <section className="bg-award-blue/10 py-24">
