@@ -32,16 +32,15 @@ const menuItems = [
     submenu: [
       { name: "FAQs", link: "/resources/faqs" },
       { name: "Guidelines", link: "/resources/guidelines" },
-      { name: "Contact", link: "/contacts" },
     ],
   },
   {
     title: "Contact",
     link: "/contact#contact",
     submenu: [
-      { name: "Contact Us", link: "/contact#contact-us" },
-      { name: "Sponsorship", link: "/contact#sponsorship" },
-      { name: "Partnerships", link: "/contact#partnerships" },
+      { name: "Contact Us", link: "/contacts" },
+      { name: "Sponsorship", link: "/contacts#sponsorship" },
+      { name: "Partnerships", link: "/contacts#partnerships" },
     ],
   },
 ]
