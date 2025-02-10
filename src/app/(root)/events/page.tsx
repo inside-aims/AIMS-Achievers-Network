@@ -1,13 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Navbar } from "@/components/shared/Navigation/Navbar";
 import EventCard from "@/components/Events/EventCard";
 import NewsCard from "@/components/Events/NewsCrad";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CalendarIcon, SearchIcon } from "lucide-react";
-import Footer from "@/components/shared/Footer/Footer";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -27,12 +25,11 @@ export default function EventsPage() {
   return (
     <>
       <div className="mt-20 min-h-screen bg-black text-white">
-        <Navbar />
         <main className="container mx-auto px-4 py-8">
           {/* Hero Section */}
           <section className="mb-16">
             <motion.h1
-              className="mb-4 font-cinzel text-3xl font-bold text-award-gold lg:text-5xl"
+              className="mb-4 font-cinzel text-3xl text-award-gold lg:text-5xl"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -68,8 +65,8 @@ export default function EventsPage() {
           </section>
 
           {/* Upcoming Events */}
-          <section className="mb-16">
-            <h2 className="mb-8 font-cinzel text-3xl font-bold text-award-gold">
+          <section className="mb-16" id="upcoming-events">
+            <h2 className="mb-8 font-cinzel text-3xl text-award-gold">
               Upcoming Events
             </h2>
             <motion.div
@@ -107,7 +104,7 @@ export default function EventsPage() {
 
           {/* Current Events */}
           <section className="mb-16">
-            <h2 className="mb-8 font-cinzel text-3xl font-bold text-award-gold">
+            <h2 className="mb-8 font-cinzel text-3xl text-award-gold">
               Current Events
             </h2>
             <motion.div
@@ -137,7 +134,7 @@ export default function EventsPage() {
 
           {/* Past Events */}
           <section className="mb-16">
-            <h2 className="mb-8 font-cinzel text-3xl font-bold text-award-gold">
+            <h2 className="mb-8 font-cinzel text-3xl text-award-gold">
               Past Events
             </h2>
             <motion.div
@@ -175,7 +172,7 @@ export default function EventsPage() {
 
           {/* News and Announcements */}
           <section>
-            <h2 className="mb-8 font-cinzel text-3xl font-bold text-award-gold">
+            <h2 className="mb-8 font-cinzel text-3xl text-award-gold">
               News and Announcements
             </h2>
             <motion.div
@@ -210,12 +207,8 @@ export default function EventsPage() {
               />
             </motion.div>
           </section>
-          <section className="relative top-20">
-            <Footer />
-          </section>
         </main>
       </div>
-      <Navbar />
     </>
   );
 }

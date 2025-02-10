@@ -13,34 +13,36 @@ const menuItems = [
     title: "About",
     link: "/about",
     submenu: [
-      { name: "Our Mission", link: "/about#our-mission" },
-      { name: "History", link: "/about#our-history" },
-      { name: "Team", link: "/about#team-section" },
+
+      { name: "Our Mission", link: "/about" },
+      { name: "History", link: "/about#history" },
+      { name: "Team", link: "/about#team" },
+
     ],
   },
   {
     title: "Awards",
     submenu: [
       { name: "Events", link: "/events" },
-      { name: "Past Winners", link: "/awards/past-winners" },
-      { name: "Nomination Process", link: "/awards/nomination-process" },
-    ],
-  },
-  {
-    title: "Contact",
-    link: "/contact",
-    submenu: [
-      { name: "Contact Us", link: "/contact#contact-form" },
-      { name: "Sponsorship", link: "/contact/sponsorship" },
-      { name: "Partnerships", link: "/contact/partnerships" },
+      { name: "Past Winners", link: "/past-winners" },
+      { name: "Gallery", link: "/gallery" },
+      { name: "Nomination Process", link: "/nomination-process-alt" },
     ],
   },
   {
     title: "Resources",
     submenu: [
-      { name: "FAQs", link: "/resources/faqs" },
-      { name: "Guidelines", link: "/resources/guidelines" },
-      { name: "Contact", link: "/resources/contact" },
+      { name: "FAQs", link: "/resources#faqs" },
+      { name: "Guidelines", link: "/resources#guidelines" },
+    ],
+  },
+  {
+    title: "Contact",
+    link: "/contact#contact",
+    submenu: [
+      { name: "Contact Us", link: "/contacts" },
+      { name: "Sponsorship", link: "/contacts#sponsorship" },
+      { name: "Partnerships", link: "/contacts#partnerships" },
     ],
   },
 ]
@@ -108,7 +110,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <Logo />
-              <span className="font-cinzel text-2xl font-bold text-award-gold">AimsAchieversNetwok</span>
+              <span className="font-cinzel text-2xl text-award-gold">AimsAchieversNetwok</span>
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">
@@ -124,9 +126,9 @@ export function Navbar() {
                 <Search className="h-6 w-6" />
               </button>
             </motion.div>
-            <AnimatedButton variant="default" size="lg">
+            {/* <AnimatedButton variant="default" size="lg">
               Nominate Now
-            </AnimatedButton>
+            </AnimatedButton> */}
           </div>
           <div className="md:hidden flex items-center">
             <button
@@ -186,9 +188,9 @@ export function Navbar() {
                     <Search className="h-6 w-6" />
                   </button>
                 </motion.div>
-                <AnimatedButton variant="default" size="lg">
+                {/* <AnimatedButton variant="default" size="lg">
                   Nominate Now
-                </AnimatedButton>
+                </AnimatedButton> */}
               </div>
             </div>
           </motion.div>

@@ -1,25 +1,21 @@
-import { Cinzel, Poppins } from "next/font/google"
-import type React from "react" // Import React
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  variable: "--font-cinzel",
-})
+import React from "react";
+import { Navbar } from "@/components/shared/Navigation/Navbar";
+import Footer from "@/components/shared/Footer/Footer";
 
-const poppins = Poppins({
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-})
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+const Layout = ({ children }) => {
   return (
-    <html lang="en">
-      <body className={`${cinzel.variable} ${poppins.variable}`}>{children}</body>
-    </html>
-  )
-}
+    <div className="flex min-h-screen flex-col bg-black text-white">
+      {/* Header */}
+      <Navbar />
+
+      {children}
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+};
+
+export default Layout;
+
