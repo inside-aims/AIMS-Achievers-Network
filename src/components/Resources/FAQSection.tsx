@@ -1,39 +1,43 @@
-"use client"
-import { motion } from "framer-motion"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+"use client";
+import { motion } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const faqs = [
   {
-    question: "What is the Aims Achievers Network (AAN) Awards?",
-    answer:
-      "The AAN Awards is an annual recognition program celebrating excellence in tertiary education. It honors outstanding achievements of students, educators, and institutions across various categories.",
+    question: "What is AIMS Achievers Network?",
+  answer: "AIMS Achievers Network is a platform that allows tertiary institutions to host, showcase, and vote on university events and competitions, fostering excellence and student engagement."
   },
   {
-    question: "Who is eligible to be nominated for an AAN Award?",
+    question: "How does the platform work?",
     answer:
-      "Students, faculty members, and institutions from accredited tertiary education institutions are eligible for nomination. Specific eligibility criteria may vary by award category.",
+      "Universities can list their events, and students can vote for their favorites. The platform ensures fairness and credibility through a transparent voting system.",
   },
   {
-    question: "How can I nominate someone for an AAN Award?",
+    question: "Who can participate?",
     answer:
-      "Nominations can be submitted through our online nomination form. You'll need to provide details about the nominee and a justification for their nomination. The nomination process typically opens several months before the awards ceremony.",
+      "Students, faculty members, and institutions from accredited tertiary institutions can host or engage with events on the platform.",
   },
   {
-    question: "What are the different award categories?",
+    question: "What types of events can be hosted?",
     answer:
-      "Our award categories include Academic Excellence, Innovation in Education, Community Impact, Leadership in Education, Lifetime Achievement, and Rising Star. Each category has specific criteria and is designed to recognize different aspects of excellence in tertiary education.",
+      "Academic conferences, innovation challenges, cultural festivals, talent shows, sports competitions, and other student-centered events can be featured.",
   },
   {
-    question: "How are the winners selected?",
+    question: "How is voting conducted?",
     answer:
-      "Winners are selected through a rigorous evaluation process. After the nomination period, our panel of expert judges reviews all submissions. Shortlisted nominees may be invited for interviews or to submit additional information. The final winners are chosen based on the judges' scores and deliberations.",
+      "Voting is done digitally on the platform, ensuring real-time engagement and fair results.",
   },
   {
-    question: "When and where is the AAN Awards ceremony held?",
+    question: "Why should universities use AIMS Achievers Network?",
     answer:
-      "The AAN Awards ceremony is typically held annually in September. The venue may change each year and is announced several months in advance on our website and social media channels.",
+      "It enhances visibility, credibility, and participation in campus events, creating a thriving network for collaboration and recognition.",
   },
-]
+];
 
 export default function FAQSection() {
   return (
@@ -43,16 +47,21 @@ export default function FAQSection() {
       transition={{ duration: 0.5 }}
       className="space-y-6"
     >
-      <h2 className="text-3xl text-award-gold mb-6 font-cinzel">Frequently Asked Questions</h2>
+      <h2 className="mb-6 font-cinzel text-3xl text-award-gold">
+        Frequently Asked Questions
+      </h2>
       <Accordion type="single" collapsible className="w-full">
         {faqs.map((faq, index) => (
           <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-award-silver hover:text-award-gold">{faq.question}</AccordionTrigger>
-            <AccordionContent className="text-award-silver">{faq.answer}</AccordionContent>
+            <AccordionTrigger className="text-award-silver hover:text-award-gold">
+              {faq.question}
+            </AccordionTrigger>
+            <AccordionContent className="text-award-silver">
+              {faq.answer}
+            </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
     </motion.section>
-  )
+  );
 }
-

@@ -75,7 +75,7 @@ export default function Home() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="bg-gradient-to-r from-award-gold via-award-silver to-award-gold bg-clip-text font-cinzel text-6xl tracking-tighter text-transparent sm:text-7xl md:text-8xl"
+                className="bg-gradient-to-r pt-5 from-award-gold via-award-silver to-award-gold bg-clip-text font-cinzel text-6xl tracking-tighter text-transparent sm:text-7xl md:text-8xl"
               >
                 Elevating Academic Excellence
               </motion.h1>
@@ -202,9 +202,9 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-        <section>
+        {/* <section>
           <Calendar/>
-        </section>
+        </section> */}
 
         {/* Testimonials */}
         <section className="bg-award-blue/10 py-24">
@@ -269,7 +269,10 @@ export default function Home() {
                 Join us in celebrating the brightest minds and most impactful
                 contributions in tertiary education.
               </p>
+              <Link href={"/nomination-process-alt"} className="relative top-5">
               <AnimatedButton size="lg">Nominate Now</AnimatedButton>
+
+              </Link>
             </motion.div>
           </div>
         </section>

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Footer from "@/components/shared/Footer/Footer";
 import GuidelinesSection from "@/components/Resources/Guidlines";
 import FAQSection from "@/components/Resources/FAQSection";
 
@@ -18,7 +17,7 @@ export default function ResourcesPage() {
           Resources
         </motion.h1>
 
-        <div className="space-y-16">
+        <div className="space-y-16 mb-20">
           <section id="faqs">
             <FAQSection />
           </section>
@@ -27,7 +26,6 @@ export default function ResourcesPage() {
           </section>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
