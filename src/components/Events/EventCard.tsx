@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { CalendarIcon, ArrowRightIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type React from "react" // Added import for React
+import { useRouter } from "next/navigation"
 
 interface EventCardProps {
   title: string
@@ -10,10 +11,12 @@ interface EventCardProps {
   image: string
   description: string
   link: string
-  status: "upcoming" | "current" | "past"
+  status: "upcoming" | "current" | "past",
+  location?: string;
 }
 
 const EventCard: React.FC<EventCardProps> = ({ title, date, image, description, link, status }) => {
+  const router = useRouter()
   const cardVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -51,6 +54,7 @@ const EventCard: React.FC<EventCardProps> = ({ title, date, image, description, 
         <Button
           variant="outline"
           className="w-full justify-between border-award-gold text-award-gold hover:bg-award-gold hover:text-black"
+          onClick={() => router.push(`vote.localhost:3000${link}`)}
         >
           Learn More <ArrowRightIcon className="ml-2 h-4 w-4" />
         </Button>
