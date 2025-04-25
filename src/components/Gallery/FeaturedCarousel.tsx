@@ -42,7 +42,7 @@ export default function FeaturedCarousel() {
                   alt={moment.alt}
                   layout="fill"
                   objectFit="cover"
-                  className="rounded-lg"
+                  className="rounded-lg object-top"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-30 flex items-end p-4">
                   <Button variant="outline" className="font-poppins text-white border-white">
