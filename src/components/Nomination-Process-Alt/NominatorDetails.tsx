@@ -6,11 +6,30 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Label } from "@/components/ui/label"
 import type React from "react" // Import React
 
+type FormData = {
+  category: string;
+  nominee: {
+    fullName: string;
+    institution: string;
+    department: string;
+    levelOfStudy: string;
+    email: string;
+    phone: string;
+  };
+  justification: string;
+  documents: string[]; // Assuming these are file URLs or file names
+  socialMediaLink: string;
+  nominator: {
+    name: string;
+    email: string;
+    relationship: string;
+  };
+};
+
+
 interface NominatorDetailsProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  formData: any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  updateFormData: (data: any) => void
+  formData: FormData
+  updateFormData: (data: Partial<FormData>) => void
   onNext: () => void
   onPrevious: () => void
 }
