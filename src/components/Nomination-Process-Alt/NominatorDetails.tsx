@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -7,7 +7,9 @@ import { Label } from "@/components/ui/label"
 import type React from "react" // Import React
 
 interface NominatorDetailsProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formData: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   updateFormData: (data: any) => void
   onNext: () => void
   onPrevious: () => void
