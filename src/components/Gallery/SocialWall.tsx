@@ -83,6 +83,7 @@ export default function SocialWall() {
             accept="image/*"
             onChange={handleFileChange}
             className="w-full rounded border p-2 font-poppins sm:flex-1"
+            placeholder="Select a file"
           />
           <Button type="submit" className="w-full font-poppins sm:w-auto">
             Upload

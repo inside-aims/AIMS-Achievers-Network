@@ -3,7 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Trophy, Calendar, Users, Star, Award, Zap, Twitter, Linkedin, Instagram, Facebook } from "lucide-react"
+import { Twitter, Linkedin, Instagram, Facebook } from "lucide-react"
 
 const staggerContainer = {
     animate: {

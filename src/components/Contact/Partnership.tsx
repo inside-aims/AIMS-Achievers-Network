@@ -13,7 +13,7 @@ export default function Partnership() {
     >
       <h2 className="text-3xl font-semibold mb-6 text-award-blue">Partnership Proposals</h2>
       <p className="mb-4 text-award-customBlack">
-        We're always open to exploring new partnerships that can bring value to our awards and the wider community.
+        We&apos;re always open to exploring new partnerships that can bring value to our awards and the wider community.
       </p>
       <ul className="list-disc list-inside mb-6 text-award-customBlack">
         <li>Co-branded events and initiatives</li>

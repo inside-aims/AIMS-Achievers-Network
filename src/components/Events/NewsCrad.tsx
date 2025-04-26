@@ -7,10 +7,10 @@ interface NewsCardProps {
   title: string
   date: string
   excerpt: string
-  link: string
+  link?: string
 }
 
-const NewsCard: React.FC<NewsCardProps> = ({ title, date, excerpt, link }) => {
+const NewsCard: React.FC<NewsCardProps> = ({ title, date, excerpt }) => {
   const cardVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },

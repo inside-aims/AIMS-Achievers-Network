@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -32,7 +33,7 @@ export default function NomineeConfirmation({ formData, onNext, onPrevious }: No
           <li>The nominee will receive an email with a confirmation link.</li>
           <li>They must click the link to verify and accept the nomination.</li>
           <li>Once confirmed, the nomination will be reviewed by our team.</li>
-          <li>If approved, the nominee's profile will be listed for voting.</li>
+          <li>If approved, the nominee&apos;s profile will be listed for voting.</li>
         </ol>
       </div>
       <div className="flex justify-between mt-6">

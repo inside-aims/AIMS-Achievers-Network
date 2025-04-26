@@ -12,7 +12,7 @@ export default function SponsorshipSection() {
     >
       <h2 className="text-3xl text-award-gold mb-6 font-cinzel">Sponsorship Opportunities</h2>
       <p className="text-award-silver mb-6 font-poppins">
-        Join us in celebrating excellence in academia. By becoming a sponsor, you'll gain visibility among the brightest
+        Join us in celebrating excellence in academia. By becoming a sponsor, you&apos;ll gain visibility among the brightest
         minds in tertiary education and contribute to the recognition of outstanding achievements.
       </p>
       <ul className="list-disc list-inside text-award-silver mb-6 font-poppins">
