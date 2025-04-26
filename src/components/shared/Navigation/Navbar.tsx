@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronDown, Search } from "lucide-react"
@@ -13,11 +13,9 @@ const menuItems = [
     title: "About",
     link: "/about",
     submenu: [
-
       { name: "Our Mission", link: "/about" },
       { name: "History", link: "/about#history" },
       { name: "Team", link: "/about#team" },
-
     ],
   },
   {
@@ -87,13 +85,23 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false)
+      }
     }
+
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener("mousedown", handleClickOutside)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("mousedown", handleClickOutside)
+    }
   }, [])
 
   return (
@@ -126,9 +134,6 @@ export function Navbar() {
                 <Search className="h-6 w-6" />
               </button>
             </motion.div>
-            {/* <AnimatedButton variant="default" size="lg">
-              Nominate Now
-            </AnimatedButton> */}
           </div>
           <div className="md:hidden flex items-center">
             <button
@@ -140,6 +145,8 @@ export function Navbar() {
           </div>
         </div>
       </div>
+
+      {/* Search Field */}
       <AnimatePresence>
         {isSearchOpen && (
           <motion.div
@@ -155,6 +162,8 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -162,6 +171,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-black/90"
+            ref={mobileMenuRef}
           >
             <div className="container mx-auto px-4 py-4">
               {menuItems.map((item) => (
@@ -171,6 +181,7 @@ export function Navbar() {
                     <Link
                       key={subItem.name}
                       href={subItem.link}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className="block py-1 font-poppins text-sm text-award-silver hover:text-award-gold"
                     >
                       {subItem.name}
@@ -188,9 +199,6 @@ export function Navbar() {
                     <Search className="h-6 w-6" />
                   </button>
                 </motion.div>
-                {/* <AnimatedButton variant="default" size="lg">
-                  Nominate Now
-                </AnimatedButton> */}
               </div>
             </div>
           </motion.div>
@@ -199,6 +207,3 @@ export function Navbar() {
     </motion.header>
   )
 }
-
-
-

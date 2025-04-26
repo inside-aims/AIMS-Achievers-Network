@@ -6,7 +6,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Button } from "@/components/ui/button"
 
 interface FilterSortProps {
-  onFilterChange: (filters: any) => void
+  onFilterChange: (filters: Record<string, string>) => void
   onSortChange: (sortBy: string) => void
 }
 

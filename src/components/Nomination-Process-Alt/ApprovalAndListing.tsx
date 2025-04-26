@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, Clock } from "lucide-react"
 
 interface ApprovalAndListingProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formData: any
   onNext: () => void
   onPrevious: () => void
@@ -45,7 +46,7 @@ export default function ApprovalAndListing({ formData, onNext, onPrevious }: App
             </p>
           ) : (
             <p>
-              The nomination for {formData.nominee.fullName} is currently under review. We'll notify you once it's
+              The nomination for {formData.nominee.fullName} is currently under review. We&apos;ll notify you once it&apos;s
               approved.
             </p>
           )}
