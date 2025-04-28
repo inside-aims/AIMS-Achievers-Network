@@ -75,7 +75,7 @@ export default function Home() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="bg-gradient-to-r from-award-gold via-award-silver to-award-gold bg-clip-text font-cinzel text-6xl tracking-tighter text-transparent sm:text-7xl md:text-8xl"
+                className="pt-10 bg-gradient-to-r from-award-gold via-award-silver to-award-gold bg-clip-text font-cinzel text-6xl tracking-tighter text-transparent sm:text-7xl md:text-8xl"
               >
                 Elevating Academic Excellence
               </motion.h1>

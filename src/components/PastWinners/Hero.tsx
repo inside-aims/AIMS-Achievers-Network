@@ -16,7 +16,7 @@ const HeroComponent = () => {
           className="h-full w-full bg-[url('/placeholder.svg?height=600&width=1200')] bg-cover bg-center bg-no-repeat opacity-20"
         />
       </div>
-      <div className="relative max-w-7xl mx-auto text-center">
+      <div className="relative max-w-7xl mx-auto text-center  mt-10">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
