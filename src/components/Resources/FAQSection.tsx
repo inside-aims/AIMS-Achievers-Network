@@ -1,4 +1,5 @@
 "use client"
+
 import { motion } from "framer-motion"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
@@ -37,22 +38,38 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="space-y-6"
-    >
-      <h2 className="text-3xl text-award-gold mb-6 font-cinzel">Frequently Asked Questions</h2>
-      <Accordion type="single" collapsible className="w-full">
-        {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-award-silver hover:text-award-gold">{faq.question}</AccordionTrigger>
-            <AccordionContent className="text-award-silver">{faq.answer}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </motion.section>
+    <div className="container mx-auto px-4 py-8">
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="space-y-6"
+      >
+        <h2 className="text-3xl text-award-gold mb-8 font-cinzel text-center">Frequently Asked Questions</h2>
+        <Accordion type="single" collapsible className="w-full">
+          {faqs.map((faq, index) => (
+            <AccordionItem key={index} value={`item-${index}`}>
+              <AccordionTrigger className="text-award-silver hover:text-award-gold px-2 py-3 text-left">
+                {faq.question}
+              </AccordionTrigger>
+
+              {/* ✨ Animate Accordion Content ✨ */}
+              <AccordionContent asChild>
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-award-silver px-4 py-2"
+                >
+                  {faq.answer}
+                </motion.div>
+              </AccordionContent>
+
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </motion.section>
+    </div>
   )
 }
-
