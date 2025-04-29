@@ -25,6 +25,7 @@ const staggerContainer = {
 };
 
 export default function EventsPage() {
+  const voteDomain = process.env.NEXT_PUBLIC_VOTE_DOMAIN;
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -93,7 +94,7 @@ export default function EventsPage() {
               date={new Date(event.eventDate).toLocaleDateString()}
               image={event.image || "/assets/default-event.webp"}
               description={event.description}
-              link={`/events/${event.id}`}
+              link={`${voteDomain}/event/${event.id}/categories`}
               status={status}
               location={event.location}
             />
