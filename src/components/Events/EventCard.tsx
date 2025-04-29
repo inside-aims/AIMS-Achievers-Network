@@ -54,7 +54,7 @@ const EventCard: React.FC<EventCardProps> = ({ title, date, image, description, 
         <Button
           variant="outline"
           className="w-full justify-between border-award-gold text-award-gold hover:bg-award-gold hover:text-black"
-          onClick={() => router.push(`http://vote.localhost:3000${link}`)}
+          onClick={() => router.push(`${link}`)}
         >
           Learn More <ArrowRightIcon className="ml-2 h-4 w-4" />
         </Button>
