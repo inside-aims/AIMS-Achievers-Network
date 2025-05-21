@@ -380,7 +380,7 @@ export default function GalleryGrid() {
       <h1 className="mb-8 text-center font-cinzel text-4xl font-light tracking-tight md:text-5xl">Feast Your Eyes On Elegance</h1>
 
       {/* Advanced Filter Bar */}
-      <div className="sticky top-0 z-10 mb-8 bg-award-bronze p-4 shadow-md">
+      <div className="sticky top-20 z-20 mb-8 bg-award-bronze p-4 shadow-md">
         <div className="flex flex-wrap items-center justify-between gap-4">
           {/* Category Filters */}
           <div className="flex flex-wrap gap-2 overflow-x-auto pb-2">
@@ -612,7 +612,7 @@ export default function GalleryGrid() {
                     />
 
                     {/* Award type badge */}
-                    <div className="absolute left-2 top-2 z-20">
+                    <div className="absolute left-2 top-2 z-10">
                       <Badge
                         className={cn(
                           "font-medium",
@@ -626,7 +626,7 @@ export default function GalleryGrid() {
                     </div>
 
                     {/* Year badge */}
-                    <div className="absolute right-2 top-2 z-20">
+                    <div className="absolute right-2 top-2 z-10">
                       <Badge variant="outline" className="bg-black/50 backdrop-blur-sm">
                         {img.year}
                       </Badge>
