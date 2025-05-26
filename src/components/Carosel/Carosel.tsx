@@ -5,9 +5,10 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import type { StaticImageData } from "next/image"
 
 interface CarouselProps {
-  images: string[]
+  images: StaticImageData[]
   interval?: number
 }
 

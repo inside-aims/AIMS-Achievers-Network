@@ -16,6 +16,9 @@ import {
 import { Carousel } from "@/components/Carosel/Carosel";
 import Link from "next/link";
 import heroImage4 from "../../../public/assets/home/heroimage4.webp"
+import about from "../../../public/assets/about/about.webp";
+import about1 from "../../../public/assets/about/about1.webp";
+import about2 from "../../../public/assets/about/about2.webp";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -24,9 +27,9 @@ const fadeInUp = {
 };
 
 const carouselImages = [
-  "/assets/about.webp",
-  "/assets/about1.webp",
-  "/assets/about2.webp",
+  about,
+  about1,
+  about2,
 ];
 const staggerContainer = {
   animate: {
@@ -61,6 +64,7 @@ export default function Home() {
             alt="Victory Statue"
             fill
             className="h-full w-full object-cover brightness-50"
+            priority
           />
           <motion.div
             initial={{ opacity: 0 }}
