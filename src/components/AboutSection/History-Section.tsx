@@ -17,7 +17,7 @@ export default function HistorySection() {
             >
               <div className="absolute inset-0 bg-award-deepBlue/10 rounded-lg"></div>
               <Image
-                src="/assets/about.webp"
+                src="/assets/about/about.webp"
                 alt="History illustration"
                 className="relative rounded-lg object-cover transform transition-transform duration-500 hover:scale-105"
                 width={700}
