@@ -40,7 +40,7 @@ export default function MissionSection() {
             >
               <div className="absolute inset-0 bg-award-deepBlue/10 rounded-lg"></div>
               <Image
-                src="/assets/about1.webp"
+                src="/assets/about/about1.webp"
                 alt="Mission illustration"
                 className="relative rounded-lg object-cover transform transition-transform duration-500 hover:scale-105"
                 width={700}

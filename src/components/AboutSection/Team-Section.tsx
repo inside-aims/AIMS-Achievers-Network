@@ -6,19 +6,19 @@ import AnimatedSection from "./Animated-Section"
 export default function TeamSection() {
   const teamMembers = [
     {
-      name: "Sarah Johnson",
-      role: "CEO & Founder",
-      image: "/placeholder.svg?height=200&width=200",
+      name: "Andrew Nana Beniako",
+      role: "CEO & Co-founder",
+      image: "/assets/gallery/galleryhero.webp",
     },
     {
-      name: "Michael Chen",
-      role: "Chief Technology Officer",
-      image: "/placeholder.svg?height=200&width=200",
+      name: "Nathaniel E. Adama",
+      role: "Chief Technology Officer / Co-founder",
+      image: "/assets/gallery/gallery12.webp",
     },
     {
-      name: "Emma Williams",
-      role: "Head of Operations",
-      image: "/placeholder.svg?height=200&width=200",
+      name: "Emmanuel Acquah",
+      role: "Head of Operations / Co-founder ",
+      image: "/assets/gallery/gallery11.webp",
     },
   ]
 
@@ -76,13 +76,13 @@ export default function TeamSection() {
                 <Image
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}
-                  className="relative rounded-full object-cover border-4 border-award-gold"
-                  width={160}
-                  height={160}
+                  className="relative rounded-full object-contain border-4 border-award-gold"
+                  width={100}
+                  height={100}
                 />
               </motion.div>
-              <h3 className="text-xl font-semibold text-deepBlue font-cinzel">{member.name}</h3>
-              <p className="text-silver font-poppins">{member.role}</p>
+              <h3 className="text-xl font-semibold text-black font-cinzel">{member.name}</h3>
+              <p className="text-black font-poppins">{member.role}</p>
             </motion.div>
           ))}
         </motion.div>

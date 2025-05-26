@@ -25,8 +25,8 @@ const WinnerCardComponent: React.FC<WinnerCardProps> = ({ image, name, eventTitl
         <Image
           src={image || "/placeholder.svg"}
           alt={`${name} - ${eventTitle} winner`}
-          layout="fill"
-          objectFit="cover"
+          fill
+          objectFit="contain"
         />
       </div>
       <div className="p-6">
