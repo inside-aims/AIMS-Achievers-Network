@@ -18,7 +18,7 @@ const SidebarComponent = () => {
         {[1, 2, 3].map(i => (
           <div key={i} className="flex items-center space-x-4">
             <Image
-              src={`/placeholder.svg?height=80&width=80`}
+              src={`/assets/gallery/gallery11.webp`}
               alt={`Featured Winner ${i}`}
               width={80}
               height={80}

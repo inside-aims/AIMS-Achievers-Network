@@ -24,9 +24,9 @@ interface Filters {
 }
 
 // Mock data
-const mockWinners: Winner[] = Array.from({ length: 50 }, (_, i) => ({
+const mockWinners: Winner[] = Array.from({ length: 5 }, (_, i) => ({
   id: `winner-${i + 1}`,
-  image: `/placeholder.svg?height=300&width=400`,
+  image: `/assets/gallery/gallery8.webp`,
   name: `Winner ${i + 1}`,
   eventTitle: `Award Category ${(i % 3) + 1}`,
   year: 2025 - Math.floor(i / 10),
