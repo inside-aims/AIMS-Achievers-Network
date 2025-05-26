@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/card";
 import { Carousel } from "@/components/Carosel/Carosel";
 import Link from "next/link";
+import heroImage4 from "../../../public/assets/home/heroimage4.webp"
+
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -55,7 +57,7 @@ export default function Home() {
           className="relative h-screen overflow-hidden"
         >
           <Image
-            src="/assets/heroimage4.webp"
+            src={heroImage4}
             alt="Victory Statue"
             fill
             className="h-full w-full object-cover brightness-50"
