@@ -10,6 +10,7 @@ import { AlertCircle, CalendarIcon, SearchIcon } from "lucide-react";
 import { getSupabaseBrowserClient } from "@/supabase/client";
 import { Event, EventStatus } from "@/lib/types";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import NominationsForm from "@/components/form/NominationsForm";
 
 // const fadeInUp = {
 //   initial: { opacity: 0, y: 20 },
@@ -158,13 +159,13 @@ export default function EventsPage() {
       <AlertTitle>Heads Up!</AlertTitle>
       <AlertDescription>
         Nominations for the <span className="font-bold text-award-gold">2025 PINNACLE FAST AWARD</span> are now open! <br />
-        1. Please click on the event card to view the categories . <br />
-        2. Click on the category you want to nominate for. <br />
-        3. Click the Nominate Someone button to nominate your candidate or yourself . <br />
-        
-        
+        Click the Nominate Someone button to nominate your candidate or yourself . <br />
       </AlertDescription>
     </Alert>
+          </div>
+
+          <div className="mt-8">
+          <NominationsForm />
           </div>
         </section>
 
