@@ -13,9 +13,10 @@ interface EventCardProps {
   link: string
   status: "upcoming" | "current" | "past",
   location?: string;
+  disabled?: boolean;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ title, date, image, description, link, status }) => {
+const EventCard: React.FC<EventCardProps> = ({ title, date, image, description, link, status, disabled }) => {
   const router = useRouter()
   const cardVariants = {
     initial: { opacity: 0, y: 20 },
@@ -53,8 +54,9 @@ const EventCard: React.FC<EventCardProps> = ({ title, date, image, description, 
         <p className="text-white mb-4 font-poppins">{description}</p>
         <Button
           variant="outline"
-          className="w-full justify-between border-award-gold text-award-gold hover:bg-award-gold hover:text-black"
+          className={`w-full justify-between border-award-gold text-award-gold hover:bg-award-gold hover:text-black ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
           onClick={() => router.push(`${link}`)}
+          disabled={disabled}
         >
           Learn More <ArrowRightIcon className="ml-2 h-4 w-4" />
         </Button>

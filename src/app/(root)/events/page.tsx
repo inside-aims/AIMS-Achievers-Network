@@ -6,9 +6,10 @@ import EventCard from "@/components/Events/EventCard";
 import NewsCard from "@/components/Events/NewsCrad";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CalendarIcon, SearchIcon } from "lucide-react";
+import { AlertCircle, CalendarIcon, SearchIcon } from "lucide-react";
 import { getSupabaseBrowserClient } from "@/supabase/client";
 import { Event, EventStatus } from "@/lib/types";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 // const fadeInUp = {
 //   initial: { opacity: 0, y: 20 },
@@ -97,6 +98,7 @@ export default function EventsPage() {
               link={`${voteDomain}/event/${event.id}/categories`}
               status={status}
               location={event.location}
+              disabled={status === 'past'}
             />
           ))
         ) : (
@@ -149,6 +151,21 @@ export default function EventsPage() {
               <CalendarIcon className="mr-2 h-4 w-4" /> Filter by Date
             </Button>
           </div>
+
+          <div className="mt-8">
+          <Alert variant="default" className=" w-full md:w-1/2 animate-pulse">
+      <AlertCircle className="h-4 w-4" />
+      <AlertTitle>Heads Up!</AlertTitle>
+      <AlertDescription>
+        Nominations for the <span className="font-bold text-award-gold">2025 PINNACLE FAST AWARD</span> are now open! <br />
+        1. Please click on the event card to view the categories . <br />
+        2. Click on the category you want to nominate for. <br />
+        3. Click the Nominate Someone button to nominate your candidate or yourself . <br />
+        
+        
+      </AlertDescription>
+    </Alert>
+          </div>
         </section>
 
         {renderEventSection('upcoming', 'Upcoming Events')}
@@ -167,30 +184,19 @@ export default function EventsPage() {
               animate="animate"
               className="grid grid-cols-1 gap-8 md:grid-cols-2"
             >
-              <NewsCard
+              {/* <NewsCard
                 title="AAN Launches New Research Grant Program"
                 date="July 1, 2024"
                 excerpt="The Aims Achievers Network is proud to announce a new $5 million research grant program to support innovative projects in STEM fields."
                 link="#"
-              />
+              /> */}
               <NewsCard
-                title="Call for Nominations: 2024 AAN Awards"
+                title="Call for Nominations: 2025 PINNACLE FAST AWARD "
                 date="June 15, 2024"
-                excerpt="Nominations are now open for the 2024 AAN Awards. Submit your nominations for outstanding achievements in academia."
-                link="#"
+                excerpt="Nominations are now open for the 2025 PINNACLE FAST AWARD. Submit your nominations for outstanding achievements in academia."
+                link="vote.campushonorshub.com/event/5/categories"
               />
-              <NewsCard
-                title="AAN Partners with Global Universities for Exchange Program"
-                date="May 30, 2024"
-                excerpt="A new partnership program aims to facilitate international academic exchanges and collaborations."
-                link="#"
-              />
-              <NewsCard
-                title="Annual Report: Impact of AAN Awards on Academic Careers"
-                date="April 22, 2024"
-                excerpt="Our latest report shows the significant positive impact of AAN awards on recipients' career trajectories and research output."
-                link="#"
-              />
+             
             </motion.div>
           </section>
       </main>

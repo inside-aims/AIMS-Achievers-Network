@@ -33,6 +33,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, date, excerpt }) => {
       <Button
         variant="outline"
         className="w-full justify-between border-award-gold text-award-gold hover:bg-award-gold hover:text-black"
+        disabled={true}
       >
         Read More <ArrowRightIcon className="ml-2 h-4 w-4" />
       </Button>
