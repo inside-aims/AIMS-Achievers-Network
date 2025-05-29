@@ -1,9 +1,10 @@
-"use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,15 +12,31 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { Upload } from "lucide-react"
+} from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Upload } from "lucide-react";
+import { getSupabaseBrowserClient } from "@/supabase/client";
+import { toast } from "react-hot-toast";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -29,8 +46,11 @@ const formSchema = z.object({
   department: z.string().min(1, "Department is required"),
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
   picture: z.any().optional(),
-  categories: z.array(z.string()).min(1, "Select at least 1 category").max(3, "Select maximum 3 categories"),
-})
+  categories: z
+    .array(z.string())
+    .min(1, "Select at least 1 category")
+    .max(3, "Select maximum 3 categories"),
+});
 
 const categories = {
   "Leadership & Executive Portfolios": [
@@ -82,7 +102,7 @@ const categories = {
     "Most Disciplined Student of the Year",
     "Best Student MC",
   ],
-}
+};
 
 const departments = [
   "Computer Science",
@@ -94,12 +114,15 @@ const departments = [
   "Food Technology",
   "Actuarial Science",
   "AI and Robotics",
-]
+];
 
 export default function NominationPage() {
-  const [hasApplied, setHasApplied] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const supabase = getSupabaseBrowserClient();
+  const [hasApplied, setHasApplied] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -112,68 +135,198 @@ export default function NominationPage() {
       phone: "",
       categories: [],
     },
-  })
+  });
 
   useEffect(() => {
-    const applied = localStorage.getItem("hasApplied")
+    const applied = localStorage.getItem("hasApplied");
     if (applied === "true") {
-      setHasApplied(true)
+      setHasApplied(true);
     }
-  }, [])
+  }, []);
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Nomination submitted:", values)
-    console.log("Selected file:", selectedFile)
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log("Nomination submitted:", values);
+    console.log("Selected file:", selectedFile);
+    setIsLoading(true);
+    setErrorMessage(null);
 
-    // Store in localStorage to prevent resubmission
-    localStorage.setItem("hasApplied", "true")
-    setHasApplied(true)
-    setIsOpen(false)
+    let uploadedImageUrl: string | null = null;
+    let uploadedImageName: string | null = null;
 
-    // Here you would typically send the data to your backend
-    alert("Nomination submitted successfully!")
-  }
+    // 1. Handle profileImage upload to Supabase Storage
+    if (selectedFile) {
+      const file = selectedFile;
+      const fileName = `${Date.now()}_${file.name}`;
+      const filePath = `nominations.bucket/${fileName}`; // Adjust bucket name if needed
+      uploadedImageName = fileName;
+
+      try {
+        const { error: uploadError } = await supabase.storage
+          .from("nominations.bucket")
+          .upload(filePath, file, {
+            cacheControl: "3600",
+            upsert: false,
+          });
+
+        if (uploadError) {
+          console.error("Error uploading image:", uploadError);
+          setErrorMessage(`Image upload failed: ${uploadError.message}`);
+          setIsLoading(false);
+          return; // Stop submission if image upload fails
+        }
+
+        // Get the public URL of the uploaded image
+        const { data: urlData } = supabase.storage
+          .from("nominations.bucket")
+          .getPublicUrl(filePath);
+
+        uploadedImageUrl = urlData?.publicUrl || null;
+      } catch (storageError: any) {
+        console.error("Storage operation failed:", storageError);
+        setErrorMessage(`Storage operation failed: ${storageError.message}`);
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    // Handle form submission logic here
+    // const event_id_to_insert = null; // Replace with actual event_id if available
+
+    try {
+      const { data, error } = await supabase
+        .from("nominations_form")
+        .insert([
+          {
+            full_name: values.fullName,
+            stage_name: values.stageName,
+            class: values.class,
+            level: values.level,
+            department: values.department,
+            phone: values.phone,
+            categories: values.categories,
+            picture_url: uploadedImageUrl,
+            picture_name: uploadedImageName,
+          },
+        ])
+        .select();
+
+      if (error) {
+        console.error("Error inserting nomination:", error);
+        toast.error("Error inserting nomination. Try again!");
+        return;
+      }
+
+      console.log("Nomination submitted successfully:", data);
+      toast.success("Nomination submitted successfully! Undergoing Review...");
+
+      // Store in localStorage to prevent resubmission
+      localStorage.setItem("hasApplied", "true");
+      setHasApplied(true);
+      setIsOpen(false); // Close modal after successful submission
+    } catch (error: any) {
+      console.error("Failed to submit nomination:", error);
+      toast.error("Failed to submit nomination. Try again!");
+      // You might want to show an error message to the user here
+      return {
+        success: false,
+        error: error.message || "Failed to submit nomination. Try again!",
+      };
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
+    const file = event.target.files?.[0];
     if (file) {
-      setSelectedFile(file)
+      setSelectedFile(file);
     }
-  }
+  };
 
   return (
-      <div className="text-center space-y-8">
-        <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogTrigger asChild>
-            <Button
-              disabled={hasApplied}
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {hasApplied ? "Already Nominated" : "Nominate Someone (PFAs)"}
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-black border-yellow-500">
-            <DialogHeader>
-              <DialogTitle className="text-yellow-500 text-2xl">Nomination Form</DialogTitle>
-              <DialogDescription className="text-gray-300">
-                Fill out the form below to nominate a student for recognition.(Approval sms will be sent to your phone number within 24 hours)
-              </DialogDescription>
-            </DialogHeader>
+    <div className="space-y-8 text-center">
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogTrigger asChild>
+          <Button
+            disabled={hasApplied}
+            className="bg-yellow-500 px-8 py-3 text-lg font-semibold text-black hover:bg-yellow-600 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {hasApplied ? "Already Nominated" : "Nominate Someone (PFAs)"}
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto border-yellow-500 bg-black">
+          <DialogHeader>
+            <DialogTitle className="text-2xl text-yellow-500">
+              Nomination Form
+            </DialogTitle>
+            <DialogDescription className="text-gray-300">
+              Fill out the form below to nominate a student for
+              recognition.(Approval sms will be sent to your phone number within
+              24 hours)
+            </DialogDescription>
+          </DialogHeader>
 
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {errorMessage && (
+            <div className="mb-4 rounded border border-red-400 bg-red-100 p-3 text-red-700">
+              <p>{errorMessage}</p>
+            </div>
+          )}
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="fullName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-yellow-500">Full Name</FormLabel>
+                    <FormDescription className="text-gray-400">
+                      Name will be on your certificate
+                    </FormDescription>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter full name"
+                        {...field}
+                        className="border-gray-700 bg-gray-900 text-white focus:border-yellow-500"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="stageName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-yellow-500">
+                      Stage Name
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter stage name"
+                        {...field}
+                        className="border-gray-700 bg-gray-900 text-white focus:border-yellow-500"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <FormField
                   control={form.control}
-                  name="fullName"
+                  name="class"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-yellow-500">Full Name</FormLabel>
-                      <FormDescription className="text-gray-400">Name will be on your certificate</FormDescription>
+                      <FormLabel className="text-yellow-500">Class</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Enter full name"
+                          placeholder="Enter class"
                           {...field}
-                          className="bg-gray-900 border-gray-700 text-white focus:border-yellow-500"
+                          className="border-gray-700 bg-gray-900 text-white focus:border-yellow-500"
                         />
                       </FormControl>
                       <FormMessage />
@@ -183,146 +336,144 @@ export default function NominationPage() {
 
                 <FormField
                   control={form.control}
-                  name="stageName"
+                  name="level"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-yellow-500">Stage Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Enter stage name"
-                          {...field}
-                          className="bg-gray-900 border-gray-700 text-white focus:border-yellow-500"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="class"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-yellow-500">Class</FormLabel>
+                      <FormLabel className="text-yellow-500">Level</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
-                          <Input
-                            placeholder="Enter class"
-                            {...field}
-                            className="bg-gray-900 border-gray-700 text-white focus:border-yellow-500"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="level"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-yellow-500">Level</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="bg-gray-900 border-gray-700 text-white focus:border-yellow-500">
-                              <SelectValue placeholder="Select level" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent className="bg-gray-900 border-gray-700">
-                            <SelectItem value="lvl 100" className="text-white hover:bg-gray-800">
-                              Level 100
-                            </SelectItem>
-                            <SelectItem value="lvl 200" className="text-white hover:bg-gray-800">
-                              Level 200
-                            </SelectItem>
-                            <SelectItem value="lvl 300" className="text-white hover:bg-gray-800">
-                              Level 300
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="department"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-yellow-500">Department</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="bg-gray-900 border-gray-700 text-white focus:border-yellow-500">
-                            <SelectValue placeholder="Select department" />
+                          <SelectTrigger className="border-gray-700 bg-gray-900 text-white focus:border-yellow-500">
+                            <SelectValue placeholder="Select level" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="bg-gray-900 border-gray-700">
-                          {departments.map((dept) => (
-                            <SelectItem key={dept} value={dept} className="text-white hover:bg-gray-800">
-                              {dept}
-                            </SelectItem>
-                          ))}
+                        <SelectContent className="border-gray-700 bg-gray-900">
+                          <SelectItem
+                            value="lvl 100"
+                            className="text-white hover:bg-gray-800"
+                          >
+                            Level 100
+                          </SelectItem>
+                          <SelectItem
+                            value="lvl 200"
+                            className="text-white hover:bg-gray-800"
+                          >
+                            Level 200
+                          </SelectItem>
+                          <SelectItem
+                            value="lvl 300"
+                            className="text-white hover:bg-gray-800"
+                          >
+                            Level 300
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+              </div>
 
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-yellow-500">Phone Number</FormLabel>
+              <FormField
+                control={form.control}
+                name="department"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-yellow-500">
+                      Department
+                    </FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
-                        <Input
-                          placeholder="Enter phone number"
-                          {...field}
-                          className="bg-gray-900 border-gray-700 text-white focus:border-yellow-500"
-                        />
+                        <SelectTrigger className="border-gray-700 bg-gray-900 text-white focus:border-yellow-500">
+                          <SelectValue placeholder="Select department" />
+                        </SelectTrigger>
                       </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                      <SelectContent className="border-gray-700 bg-gray-900">
+                        {departments.map(dept => (
+                          <SelectItem
+                            key={dept}
+                            value={dept}
+                            className="text-white hover:bg-gray-800"
+                          >
+                            {dept}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <div>
-                  <label className="block text-yellow-500 font-medium mb-2">Picture Upload</label>
-                  <div className="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center hover:border-yellow-500 transition-colors">
-                    <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileChange}
-                      className="hidden"
-                      id="picture-upload"
-                    />
-                    <label htmlFor="picture-upload" className="cursor-pointer text-gray-300 hover:text-yellow-500">
-                      {selectedFile ? selectedFile.name : "Click to upload picture"}
-                    </label>
-                  </div>
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-yellow-500">
+                      Phone Number
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter phone number"
+                        {...field}
+                        className="border-gray-700 bg-gray-900 text-white focus:border-yellow-500"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div>
+                <label className="mb-2 block font-medium text-yellow-500">
+                  Picture Upload
+                </label>
+                <div className="rounded-lg border-2 border-dashed border-gray-700 p-6 text-center transition-colors hover:border-yellow-500">
+                  <Upload className="mx-auto mb-2 h-8 w-8 text-gray-400" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    id="picture-upload"
+                  />
+                  <label
+                    htmlFor="picture-upload"
+                    className="cursor-pointer text-gray-300 hover:text-yellow-500"
+                  >
+                    {selectedFile
+                      ? selectedFile.name
+                      : "Click to upload picture"}
+                  </label>
                 </div>
+              </div>
 
-                <FormField
-                  control={form.control}
-                  name="categories"
-                  render={() => (
-                    <FormItem>
-                      <FormLabel className="text-yellow-500">Categories</FormLabel>
-                      <FormDescription className="text-gray-400">
-                        Select at least 1 and maximum 3 categories
-                      </FormDescription>
-                      <div className="space-y-4">
-                        {Object.entries(categories).map(([groupName, groupCategories]) => (
+              <FormField
+                control={form.control}
+                name="categories"
+                render={() => (
+                  <FormItem>
+                    <FormLabel className="text-yellow-500">
+                      Categories
+                    </FormLabel>
+                    <FormDescription className="text-gray-400">
+                      Select at least 1 and maximum 3 categories
+                    </FormDescription>
+                    <div className="space-y-4">
+                      {Object.entries(categories).map(
+                        ([groupName, groupCategories]) => (
                           <div key={groupName} className="space-y-2">
-                            <h4 className="font-semibold text-yellow-400">{groupName}</h4>
+                            <h4 className="font-semibold text-yellow-400">
+                              {groupName}
+                            </h4>
                             <div className="grid grid-cols-1 gap-2 pl-4">
-                              {groupCategories.map((category) => (
+                              {groupCategories.map(category => (
                                 <FormField
                                   key={category}
                                   control={form.control}
@@ -335,59 +486,82 @@ export default function NominationPage() {
                                       >
                                         <FormControl>
                                           <Checkbox
-                                            checked={field.value?.includes(category)}
-                                            onCheckedChange={(checked) => {
-                                              const currentCategories = field.value || []
+                                            checked={field.value?.includes(
+                                              category,
+                                            )}
+                                            onCheckedChange={checked => {
+                                              const currentCategories =
+                                                field.value || [];
                                               if (checked) {
-                                                if (currentCategories.length < 3) {
-                                                  field.onChange([...currentCategories, category])
+                                                if (
+                                                  currentCategories.length < 3
+                                                ) {
+                                                  field.onChange([
+                                                    ...currentCategories,
+                                                    category,
+                                                  ]);
                                                 }
                                               } else {
-                                                field.onChange(currentCategories.filter((value) => value !== category))
+                                                field.onChange(
+                                                  currentCategories.filter(
+                                                    value => value !== category,
+                                                  ),
+                                                );
                                               }
                                             }}
                                             disabled={
-                                              !field.value?.includes(category) && (field.value?.length || 0) >= 3
+                                              !field.value?.includes(
+                                                category,
+                                              ) &&
+                                              (field.value?.length || 0) >= 3
                                             }
-                                            className="border-gray-600 data-[state=checked]:bg-yellow-500 data-[state=checked]:border-yellow-500"
+                                            className="border-gray-600 data-[state=checked]:border-yellow-500 data-[state=checked]:bg-yellow-500"
                                           />
                                         </FormControl>
-                                        <FormLabel className="text-sm font-normal text-gray-300">{category}</FormLabel>
+                                        <FormLabel className="text-sm font-normal text-gray-300">
+                                          {category}
+                                        </FormLabel>
                                       </FormItem>
-                                    )
+                                    );
                                   }}
                                 />
                               ))}
                             </div>
                           </div>
-                        ))}
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                        ),
+                      )}
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <div className="flex justify-end space-x-4 pt-4">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setIsOpen(false)}
-                    className="border-gray-600 text-gray-300 hover:bg-gray-800"
-                  >
-                    Cancel
-                  </Button>
-                  <Button type="submit" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
-                    Submit Nomination
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </DialogContent>
-        </Dialog>
+              <div className="flex justify-end space-x-4 pt-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setIsOpen(false)}
+                  className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  className="bg-yellow-500 font-semibold text-black hover:bg-yellow-600"
+                >
+                  {isLoading ? "Submitting..." : "Submit Nomination"}
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
 
-        {hasApplied && (
-          <p className="text-gray-400 mt-4">You have already submitted a nomination. Thank you for participating!</p>
-        )}
-      </div>
-  )
+      {hasApplied && (
+        <p className="mt-4 text-gray-400">
+          You have already submitted a nomination. Thank you for participating!
+        </p>
+      )}
+    </div>
+  );
 }
