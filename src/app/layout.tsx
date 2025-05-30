@@ -1,6 +1,6 @@
 import "@/styles/globals.css"
 import { Cinzel, Poppins } from "next/font/google"
-import type { Metadata } from "next"
+import type { Metadata , Viewport} from "next"
 import type React from "react" // Import React
 import { Toaster } from "react-hot-toast"
 
@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "Aims Achievers Network - Celebrating Excellence in Tertiary Education",
   description: "Recognizing and celebrating excellence across tertiary institutions.",
 }
+
+export const viewport: Viewport = {
+  maximumScale: 1
+};
 
 export default function RootLayout({
   children,
