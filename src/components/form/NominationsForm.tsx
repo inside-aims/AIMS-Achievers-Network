@@ -105,15 +105,11 @@ const categories = {
 };
 
 const departments = [
-  "Computer Science",
-  "Fashion",
-  "Statistics",
-  "Hospitality",
-  "Networking",
-  "Catering",
-  "Food Technology",
-  "Actuarial Science",
-  "AI and Robotics",
+   "Department of Computer Science",
+    "Department of Applied Mathematics", 
+    "Department of Food and Post-Harvest Technology", 
+    "Department of Fashion and Textiles",
+    "Department of Hospitality Management"
 ];
 
 export default function NominationPage() {
