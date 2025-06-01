@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -25,15 +25,15 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         award: {
-          gold: "#FFD700", // Using the brighter gold
+          gold: "#FFD700", // Brighter gold
           silver: "#C0C0C0",
-          bronze: "#CD7F32", // From first config
-          blue: "#003366",   // From second config
+          bronze: "#CD7F32",
+          blue: "#003366",
           deepBlue: "#003366",
-          customBlack: "#121212", // First one was more stylized than plain #000000
+          customBlack: "#121212",
         },
         primary: {
-          DEFAULT: "#FFD700", // Bright gold
+          DEFAULT: "#FFD700",
           foreground: "#000000",
         },
         secondary: {
@@ -70,7 +70,7 @@ const config = {
         serif: ["var(--font-serif)", "serif"],
         cinzel: ["var(--font-cinzel)"],
         poppins: ["var(--font-poppins)"],
-        sans: ["var(--font-poppins)"], // You can optionally switch to `sans: [...]` only
+        sans: ["var(--font-poppins)"],
       },
       keyframes: {
         "accordion-down": {
@@ -81,15 +81,24 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        aurora: {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        aurora: "aurora 60s linear infinite",
       },
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
 
 export default config;
