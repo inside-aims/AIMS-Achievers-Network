@@ -11,6 +11,7 @@ import { getSupabaseBrowserClient } from "@/supabase/client";
 import { Event, EventStatus } from "@/lib/types";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import NominationsForm from "@/components/form/NominationsForm";
+import PfaTerms from "@/components/modals/pfa-terms";
 
 // const fadeInUp = {
 //   initial: { opacity: 0, y: 20 },
@@ -164,7 +165,12 @@ export default function EventsPage() {
     </Alert>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col md:flex-row items-center justify-center">
+            <p className="text-sm md:text-lg">By clicking the Nominate Someone button, you agree to the </p>
+            <PfaTerms />
+          </div>
+
+          <div className="mt-3">
           <NominationsForm />
           </div>
         </section>
