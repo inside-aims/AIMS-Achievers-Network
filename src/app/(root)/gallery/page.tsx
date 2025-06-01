@@ -13,7 +13,7 @@ const page = () => {
     <>
       <main className="min-h-screen bg-award-customBlack">
         <HeroBanner />
-        <GalleryGrid />
+          <GalleryGrid />
         <FeaturedCarousel />
         <SocialWall />
       </main>
