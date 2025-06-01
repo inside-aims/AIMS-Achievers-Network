@@ -59,7 +59,7 @@ const categories = {
     "Best Executive of the Year",
     "Most Hardworking Executive of the Year",
     "Class Rep of the Year",
-    "Best Department President of the Year",
+    "Best Department President of the Year"
   ],
   "Academic Portfolios": [
     "Best Student in Computer Science",
@@ -81,6 +81,8 @@ const categories = {
     "Most Popular Female Student of the Year",
     "Best Female Political Activist of the Year",
     "Best Male Political Activist of the Year",
+    "Influential Female",
+    "Influential Male",
   ],
   "Entrepreneurship & Creativity": [
     "Best Male Student Entrepreneur of the Year",
@@ -88,6 +90,8 @@ const categories = {
     "Graphic Designer of the Year",
     "Student Artist of the Year",
     "Best Dancer",
+    "Best student photographer",
+    "Best student Dj"
   ],
   "Sports & Versatility": [
     "Male Sport Student of the Year",
