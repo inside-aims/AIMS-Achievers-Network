@@ -102,7 +102,6 @@ const categories = {
   "Character & Miscellaneous": [
     "Perfect Gentleman of the Year",
     "Perfect Lady of the Year",
-    "Course Rep of the Year",
     "Most Disciplined Student of the Year",
     "Best Student MC",
   ],
