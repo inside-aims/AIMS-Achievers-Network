@@ -205,7 +205,6 @@ export default function NominationPage() {
             picture_name: uploadedImageName,
           },
         ])
-        .select();
 
       if (error) {
         console.error("Error inserting nomination:", error);
