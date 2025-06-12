@@ -3,7 +3,7 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -136,16 +136,14 @@ export default function NominationPage() {
     },
   });
 
-  useEffect(() => {
-    const applied = localStorage.getItem("hasApplied");
-    if (applied === "true") {
-      setHasApplied(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const applied = localStorage.getItem("hasApplied");
+  //   if (applied === "true") {
+  //     setHasApplied(true);
+  //   }
+  // }, []);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("Nomination submitted:", values);
-    console.log("Selected file:", selectedFile);
     setIsLoading(true);
     setErrorMessage(null);
 
@@ -192,7 +190,7 @@ export default function NominationPage() {
     // const event_id_to_insert = null; // Replace with actual event_id if available
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from("nominations_form")
         .insert([
           {
@@ -207,7 +205,6 @@ export default function NominationPage() {
             picture_name: uploadedImageName,
           },
         ])
-        .select();
 
       if (error) {
         console.error("Error inserting nomination:", error);
@@ -215,11 +212,10 @@ export default function NominationPage() {
         return;
       }
 
-      console.log("Nomination submitted successfully:", data);
-      toast.success("Nomination submitted successfully! Undergoing Review...");
+      toast.success(`Nomination submitted successfully! Undergoing Review...`);
 
       // Store in localStorage to prevent resubmission
-      localStorage.setItem("hasApplied", "true");
+      //localStorage.setItem("hasApplied", "true");
       setHasApplied(true);
       setIsOpen(false); // Close modal after successful submission
     } catch (error: any) {
@@ -462,7 +458,7 @@ export default function NominationPage() {
                       Categories
                     </FormLabel>
                     <FormDescription className="text-gray-400">
-                      Select at least 1 and maximum 3 categories
+                      Select at least 1 and maximum 5 categories
                     </FormDescription>
                     <div className="space-y-4">
                       {Object.entries(categories).map(
@@ -493,7 +489,7 @@ export default function NominationPage() {
                                                 field.value || [];
                                               if (checked) {
                                                 if (
-                                                  currentCategories.length < 3
+                                                  currentCategories.length < 5
                                                 ) {
                                                   field.onChange([
                                                     ...currentCategories,
@@ -512,7 +508,7 @@ export default function NominationPage() {
                                               !field.value?.includes(
                                                 category,
                                               ) &&
-                                              (field.value?.length || 0) >= 3
+                                              (field.value?.length || 0) >= 5
                                             }
                                             className="border-gray-600 data-[state=checked]:border-yellow-500 data-[state=checked]:bg-yellow-500"
                                           />
