@@ -49,7 +49,7 @@ const formSchema = z.object({
   categories: z
     .array(z.string())
     .min(1, "Select at least 1 category")
-    .max(3, "Select maximum 3 categories"),
+    .max(5, "Select maximum 3 categories"),
 });
 
 const categories = {
