@@ -89,7 +89,7 @@ const Footer = () => {
                       <ul className="space-y-2 text-sm text-award-silver">
                         {section.links?.map((link) => (
                           <li key={link}>
-                            <Link href="#" className="hover:text-award-gold transition-colors">
+                            <Link href={`/${link.toLowerCase()}`} className="hover:text-award-gold transition-colors">
                               {link}
                             </Link>
                           </li>
