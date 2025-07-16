@@ -39,6 +39,7 @@ const EventCard: React.FC<EventCardProps> = ({ title, date, image, description, 
           layout="fill"
           objectFit="cover"
           className={status === "past" ? "grayscale" : ""}
+          quality={75}
         />
         {status === "past" && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">

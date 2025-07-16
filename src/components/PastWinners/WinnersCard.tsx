@@ -27,6 +27,7 @@ const WinnerCardComponent: React.FC<WinnerCardProps> = ({ image, name, eventTitl
           alt={`${name} - ${eventTitle} winner`}
           fill
           objectFit="contain"
+          quality={75}
         />
       </div>
       <div className="p-6">

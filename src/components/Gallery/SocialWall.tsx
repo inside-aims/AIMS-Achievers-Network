@@ -64,6 +64,7 @@ export default function SocialWall() {
               alt={post.alt}
               fill
               className="rounded-lg object-cover"
+              quality={75}
             />
           </div>
         ))}

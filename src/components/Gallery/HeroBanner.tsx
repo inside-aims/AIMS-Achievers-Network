@@ -12,7 +12,7 @@ export default function HeroBanner() {
           layout="fill"
           objectFit="cover"
           objectPosition="center-right"
-          quality={90} // Adjust quality for optimization
+          quality={75} // Adjust quality for optimization
           priority // Ensures fast loading
         />
       </div>
