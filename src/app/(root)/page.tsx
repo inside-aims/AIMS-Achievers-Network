@@ -65,6 +65,7 @@ export default function Home() {
             fill
             className="h-full w-full object-cover brightness-50"
             priority
+            quality={75}
           />
           <motion.div
             initial={{ opacity: 0 }}

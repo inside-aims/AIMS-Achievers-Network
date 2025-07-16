@@ -45,6 +45,7 @@ export default function MissionSection() {
                 className="relative rounded-lg object-cover transform transition-transform duration-500 hover:scale-105"
                 width={700}
                 height={400}
+                quality={75}
               />
             </motion.div>
           </AnimatedSection>

@@ -48,6 +48,7 @@ export const Carousel: React.FC<CarouselProps> = ({ images, interval = 5000 }) =
             alt={`Carousel image ${currentIndex + 1}`}
             fill
             className="object-cover"
+            quality={75}
           />
         </motion.div>
       </AnimatePresence>

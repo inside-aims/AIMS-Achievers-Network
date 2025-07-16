@@ -23,6 +23,7 @@ const SidebarComponent = () => {
               width={80}
               height={80}
               className="rounded-full"
+              quality={75}
             />
             <div>
               <h3 className="font-poppins text-lg font-semibold text-award-silver">

@@ -926,6 +926,7 @@ export default function EnhancedGallery() {
                                   "rounded object-cover transition-opacity",
                                   !loadedImages[img.id] && "opacity-0",
                                 )}
+                                quality={75}
                                 onLoad={() => handleImageLoaded(img.id)}
                                 onError={() => handleImageError(img.id)}
                                 loading={index < 6 ? "eager" : "lazy"}
@@ -1038,6 +1039,7 @@ export default function EnhancedGallery() {
                                 onError={() => handleImageError(img.id)}
                                 loading={index < 6 ? "eager" : "lazy"}
                                 priority={index < 4}
+                                quality={75}
                               />
                             )}
 
@@ -1313,6 +1315,7 @@ export default function EnhancedGallery() {
                         sizes="(max-width: 1200px) 100vw, 1200px"
                         className="object-contain"
                         priority
+                        quality={75}
                       />
                     </div>
                   </div>
